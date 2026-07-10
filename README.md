@@ -1,37 +1,42 @@
 # Resume — Rahul Chaudhary
 
-An ATS-friendly, two-page resume for **Rahul Chaudhary** — Generative AI & Agentic AI Engineer | Full Stack Developer.
+ATS-friendly resume for **Rahul Chaudhary** — Generative AI Engineer | Full Stack Developer.
+Targeted at Generative AI Engineer, Full Stack Developer, and Backend Developer roles (internships / entry-level).
 
-## File
+## Files
 
-- **`index.html`** — a self-contained resume (HTML + inline CSS, no dependencies). Features:
-  - Modern professional design with a **sky-blue** accent (`#0ea5e9`)
-  - **Photo placeholder** in the top-right corner (replace the `PHOTO PLACEHOLDER` box)
-  - Two-column layout while keeping selectable, ATS-parseable text
-  - Print styles tuned for **A4 PDF export**
+- **`Rahul_Chaudhary_Resume.docx`** — the primary, **Microsoft Word–editable** resume. Based on the
+  CCET template layout with **sky-blue accents (`#0EA5E9`)**, a **photo placeholder**, an education table,
+  and shaded section bars. Just open it in Word to edit text or drop in a photo.
+- **`build_resume.py`** — the Python (`python-docx`) generator that produces the `.docx`. Edit content here
+  and re-run to regenerate a pixel-consistent document.
+- **`index.html`** — a self-contained web/PDF version (HTML + inline CSS, no dependencies) with the same content.
 
-## View it
+## Regenerate the Word document
 
-Open `index.html` in any web browser.
-
-## Export to PDF
-
-1. Open `index.html` in Chrome or Edge.
-2. Press `Ctrl/Cmd + P` (Print).
-3. Set **Destination** to *Save as PDF*.
-4. Set **Margins** to *None* and enable **Background graphics** (so the sky-blue accents render).
-5. Save.
-
-## Add a profile photo
-
-In `index.html`, replace the `<div class="photo">PHOTO<br />PLACEHOLDER</div>` block with:
-
-```html
-<img class="photo" src="photo.jpg" alt="Rahul Chaudhary" />
+```bash
+pip install python-docx
+python3 build_resume.py     # -> Rahul_Chaudhary_Resume.docx
 ```
 
-(You may remove the dashed-border styling from `.photo` once a real image is added.)
+## Add a profile photo (in Word)
+
+1. Open `Rahul_Chaudhary_Resume.docx` in Microsoft Word.
+2. Click inside the dashed **PHOTO** box in the top-left header cell.
+3. Delete the placeholder text and use **Insert → Pictures** to add your photo.
+
+> Note: photos are optional and can slightly reduce ATS parsing accuracy. Keep it if a photo is
+> expected for your region/roles; otherwise the layout looks clean without it.
+
+## Export the HTML version to PDF
+
+1. Open `index.html` in Chrome or Edge.
+2. Press `Ctrl/Cmd + P`, set **Destination** to *Save as PDF*.
+3. Set **Margins** to *None* and enable **Background graphics** so the sky-blue accents render.
 
 ## ATS notes
 
-The content uses standard section headings, real text (not images), and keyword coverage for Generative AI, Agentic AI, LLM applications, RAG, vector databases, full stack, backend, computer vision, and embedded AI roles.
+Content uses standard section headings and real, selectable text (not images), with natural keyword
+coverage for Generative AI, Agentic AI, RAG, full stack (React / Node.js / Express), backend, REST APIs,
+authentication, MongoDB / PostgreSQL / Supabase, workflow automation (n8n), computer vision, and
+embedded AI. No keyword stuffing, no fabricated metrics.
