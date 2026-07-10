@@ -176,60 +176,29 @@ normal.paragraph_format.space_after = Pt(0)
 normal.paragraph_format.line_spacing = 1.06
 
 
-# ---------------------------------------------------------------- HEADER
-# Two columns: left = photo placeholder, right = name / title / contact
-head = doc.add_table(rows=1, cols=2)
-no_table_borders(head)
-head.autofit = False
-head.columns[0].width = Inches(1.25)
-head.columns[1].width = Inches(6.05)
-
-photo_cell, info_cell = head.rows[0].cells
-photo_cell.width = Inches(1.25)
-info_cell.width = Inches(6.05)
-
-# --- photo placeholder box
-set_cell_bg(photo_cell, SOFT_HEX)
-set_cell_border(
-    photo_cell,
-    top={"sz": 8, "val": "dashed", "color": ACCENT_HEX},
-    bottom={"sz": 8, "val": "dashed", "color": ACCENT_HEX},
-    left={"sz": 8, "val": "dashed", "color": ACCENT_HEX},
-    right={"sz": 8, "val": "dashed", "color": ACCENT_HEX},
-)
-vertical_center(photo_cell)
-set_cell_margins(photo_cell, top=180, bottom=180, left=60, right=60)
-pp = photo_cell.paragraphs[0]
-pp.alignment = WD_ALIGN_PARAGRAPH.CENTER
-space(pp, before=0, after=0, line=1.05)
-add_run(pp, "PHOTO", size=8.5, bold=True, color=ACCENT_DARK)
-pp2 = photo_cell.add_paragraph()
-pp2.alignment = WD_ALIGN_PARAGRAPH.CENTER
-space(pp2, before=0, after=0, line=1.05)
-add_run(pp2, "Insert photo", size=7.5, color=ACCENT_DARK)
-
-# --- name / title / contact
-vertical_center(info_cell)
-set_cell_margins(info_cell, top=20, bottom=20, left=180, right=40)
-
-n = info_cell.paragraphs[0]
+# ---------------------------------------------------------------- HEADER (no photo)
+n = doc.add_paragraph()
+n.alignment = WD_ALIGN_PARAGRAPH.CENTER
 space(n, before=0, after=1, line=1.0)
-add_run(n, "RAHUL CHAUDHARY", size=24, bold=True, color=ACCENT_DARK, font=NAME_FONT)
+add_run(n, "RAHUL CHAUDHARY", size=26, bold=True, color=ACCENT_DARK, font=NAME_FONT)
 
-t = info_cell.add_paragraph()
+t = doc.add_paragraph()
+t.alignment = WD_ALIGN_PARAGRAPH.CENTER
 space(t, before=0, after=5, line=1.0)
-add_run(t, "Generative AI Engineer  |  Full Stack Developer", size=12, bold=True, color=INK)
+add_run(t, "Generative AI Engineer  |  Full Stack Developer", size=12.5, bold=True, color=INK)
 
-c1 = info_cell.add_paragraph()
-space(c1, before=0, after=1, line=1.12)
+c1 = doc.add_paragraph()
+c1.alignment = WD_ALIGN_PARAGRAPH.CENTER
+space(c1, before=0, after=1, line=1.15)
 add_run(c1, "Chandigarh, India", size=9.5, color=MUTED)
 add_run(c1, "   \u2022   ", size=9.5, color=ACCENT)
 add_run(c1, "+91 78190 22307", size=9.5, color=MUTED)
 add_run(c1, "   \u2022   ", size=9.5, color=ACCENT)
 add_run(c1, "rahulch19905@gmail.com", size=9.5, color=MUTED)
 
-c2 = info_cell.add_paragraph()
-space(c2, before=0, after=0, line=1.12)
+c2 = doc.add_paragraph()
+c2.alignment = WD_ALIGN_PARAGRAPH.CENTER
+space(c2, before=0, after=0, line=1.15)
 add_run(c2, "linkedin.com/in/rahul-chaudhary-9a7b82310", size=9.5, color=MUTED)
 add_run(c2, "   \u2022   ", size=9.5, color=ACCENT)
 add_run(c2, "github.com/RRNauhwar", size=9.5, color=MUTED)
@@ -424,12 +393,14 @@ project(
 # ---------------------------------------------------------------- CERTIFICATIONS
 section_header(doc, "Certifications")
 certs = [
-    ("Full Stack Generative & Agentic AI with Python", "Hitesh Choudhary \u2013 Udemy",
-     "Building LLM applications, RAG pipelines, and AI agents with Python."),
     ("100 Days of Code: The Complete Python Pro Bootcamp", "Dr. Angela Yu \u2013 Udemy",
      "100 hands-on Python projects spanning automation, APIs, and web apps."),
+    ("Full Stack Generative & Agentic AI with Python", "Hitesh Choudhary \u2013 Udemy",
+     "Building LLM applications, RAG pipelines, and AI agents with Python."),
     ("Complete Web Development Course", "Hitesh Choudhary \u2013 Udemy",
      "End-to-end full stack web development, from front end to back end."),
+    ("DEMA: Drone Engineering, Mechanics & Applications Bootcamp", "NIT Jalandhar & CCET \u2013 MeitY, Govt. of India",
+     "5-day bootcamp on UAV systems, drone mechanics, and embedded applications; scored 27/30 in the skill test."),
 ]
 for title, provider, desc in certs:
     p = doc.add_paragraph()
@@ -445,28 +416,35 @@ for title, provider, desc in certs:
 # ---------------------------------------------------------------- ACHIEVEMENTS
 section_header(doc, "Achievements")
 achievements = [
-    "Solved 170+ Data Structures & Algorithms problems on GeeksforGeeks.",
-    "Participated in the Hackfinity 2025 Hackathon and built an AI-powered mental wellness application.",
-    "Appeared for the GATE examination while pursuing B.E. in Electronics & Communication Engineering.",
+    "Qualified the GATE Computer Science examination while pursuing a B.E. in Electronics & Communication Engineering.",
+    "Solved 170+ Data Structures & Algorithms problems on GeeksforGeeks, ranking 16th on the institute leaderboard.",
+    "Built an AI-powered mental wellness application with a team of two at the Hackfinity 2025 Hackathon.",
 ]
 for a in achievements:
     simple_bullet(doc, a)
 
 
-# ---------------------------------------------------------------- LEADERSHIP & EXTRACURRICULAR
-section_header(doc, "Leadership & Activities")
+# ---------------------------------------------------------------- TECHNICAL INTERESTS
+section_header(doc, "Technical Interests")
 p = doc.add_paragraph()
 p.paragraph_format.left_indent = Inches(0.1)
-space(p, before=0, after=2, line=1.1)
-add_run(p, "Member \u2013 Robotics Club, CCET", size=10, color=MUTED)
-add_run(p, "      \u2022      ", size=10, color=ACCENT)
-add_run(p, "Member \u2013 ACM Student Chapter", size=10, color=MUTED)
+space(p, before=0, after=2, line=1.12)
+add_run(p, "Generative AI  \u2022  AI Automation  \u2022  Agentic AI  \u2022  Backend System Design", size=10, color=MUTED)
 
+
+# ---------------------------------------------------------------- EXTRA-CURRICULAR
+section_header(doc, "Extra-Curricular & Languages")
 p2 = doc.add_paragraph()
 p2.paragraph_format.left_indent = Inches(0.1)
-space(p2, before=0, after=2, line=1.1)
+space(p2, before=0, after=3, line=1.12)
 add_run(p2, "Interests: ", size=10, bold=True, color=ACCENT_DARK)
-add_run(p2, "Chess  \u2022  Volleyball", size=10, color=MUTED)
+add_run(p2, "Chess  \u2022  Space & Astronomy", size=10, color=MUTED)
+
+p3 = doc.add_paragraph()
+p3.paragraph_format.left_indent = Inches(0.1)
+space(p3, before=0, after=2, line=1.12)
+add_run(p3, "Languages: ", size=10, bold=True, color=ACCENT_DARK)
+add_run(p3, "English  \u2022  Hindi  \u2022  German (Beginner)", size=10, color=MUTED)
 
 
 # ---------------------------------------------------------------- save
