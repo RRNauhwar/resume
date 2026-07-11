@@ -145,19 +145,15 @@ normal.paragraph_format.space_after = Pt(0); normal.paragraph_format.line_spacin
 head = doc.add_table(rows=1, cols=3)
 no_table_borders(head)
 head.autofit = False; head.allow_autofit = False
-widths = [Inches(1.05), Inches(4.35), Inches(2.10)]
+widths = [Inches(3.90), Inches(2.45), Inches(1.15)]
 for i, w in enumerate(widths):
     head.columns[i].width = w
-logo_cell, id_cell, contact_cell = head.rows[0].cells
-for cell, w in zip((logo_cell, id_cell, contact_cell), widths):
+# order: identity (left) | contact (middle) | logo (right)
+id_cell, contact_cell, logo_cell = head.rows[0].cells
+for cell, w in zip((id_cell, contact_cell, logo_cell), widths):
     cell.width = w; cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
 
-set_cell_margins(logo_cell, top=0, bottom=0, left=0, right=40)
-lp = logo_cell.paragraphs[0]; lp.alignment = WD_ALIGN_PARAGRAPH.LEFT
-space(lp, before=0, after=0, line=1.0)
-lp.add_run().add_picture(LOGO, width=Inches(0.95))
-
-set_cell_margins(id_cell, top=0, bottom=0, left=60, right=60)
+set_cell_margins(id_cell, top=0, bottom=0, left=0, right=50)
 n = id_cell.paragraphs[0]; space(n, before=0, after=0, line=1.0)
 add_run(n, "RAHUL CHAUDHARY", size=19, bold=True, color=INK)
 br = id_cell.add_paragraph(); space(br, before=1, after=0, line=1.0)
@@ -167,7 +163,7 @@ add_run(b2, "B.E. Electronics & Communication Engineering", size=8.5, color=MUTE
 b3 = id_cell.add_paragraph(); space(b3, before=0, after=0, line=1.0)
 add_run(b3, "Chandigarh College of Engineering & Technology", size=8.5, color=MUTED)
 
-set_cell_margins(contact_cell, top=0, bottom=0, left=40, right=0)
+set_cell_margins(contact_cell, top=0, bottom=0, left=40, right=40)
 contacts = [
     ("Phone: ", "+91 78190 22307"),
     ("Email: ", "rahulch19905@gmail.com"),
@@ -180,6 +176,12 @@ for idx, (label, val) in enumerate(contacts):
     space(cp, before=0, after=0, line=1.08)
     add_run(cp, label, size=8, bold=True, color=ACCENT_DARK)
     add_run(cp, val, size=8, color=MUTED)
+
+# logo on the right of the contact information
+set_cell_margins(logo_cell, top=0, bottom=0, left=40, right=0)
+lp = logo_cell.paragraphs[0]; lp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+space(lp, before=0, after=0, line=1.0)
+lp.add_run().add_picture(LOGO, width=Inches(1.0))
 
 rule = doc.add_paragraph(); space(rule, before=3, after=3, line=1.0)
 pPr = rule._p.get_or_add_pPr()
@@ -227,10 +229,11 @@ s = doc.add_paragraph(); s.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
 space(s, before=0, after=2, exact=LINEH)
 add_run(
     s,
-    "Generative AI Engineer and Full Stack Developer who builds complete AI-powered products end to end. "
-    "Skilled in LLM applications, RAG pipelines, and agentic AI workflows with the OpenAI and Gemini APIs, "
-    "plus production-ready React and Node.js platforms with secure authentication and scalable REST APIs. "
-    "Focused on backend engineering, AI automation, and reliable systems that solve real-world problems.",
+    "Generative AI Engineer and Full Stack Developer specialising in the design and development of "
+    "intelligent, scalable software solutions. Experienced in building AI-driven applications, LLM-powered "
+    "systems, RAG architectures, and agentic workflows, combined with robust full-stack platforms and "
+    "backend services. Skilled in developing secure, high-performance applications with a focus on "
+    "automation, system reliability, and solving complex real-world problems through emerging technologies.",
     size=BODY, color=MUTED,
 )
 
@@ -285,29 +288,31 @@ project(
     "NyayaSim", "AI-Powered Virtual Courtroom",
     "React, Node.js, Express.js, Supabase, PostgreSQL, OpenAI API, Gemini API",
     [
-        "Architected an AI courtroom using Generative and Agentic AI to simulate judges, witnesses, and legal arguments, with secure authentication, case management, and digital evidence modules.",
-        "Designed scalable REST APIs following Clean Architecture and SOLID principles for maintainable backend services.",
+        "Built an AI-powered virtual courtroom platform that enables law students to practice real-world litigation through interactive trial simulations.",
+        "Developed intelligent courtroom participants, including AI judges, advocates, and witnesses, along with case management, evidence handling, and legal document drafting workflows.",
+        "Designed a scalable full-stack architecture to bridge the gap between classroom legal education and practical courtroom advocacy using modern AI technologies.",
     ],
 )
 project(
     "Smart Glasses for the Visually Impaired", "Embedded AI & Computer Vision",
     "Python, Raspberry Pi, YOLO, Computer Vision, Text-to-Speech",
     [
-        "Built a real-time YOLO object-detection pipeline on Raspberry Pi for obstacle detection, optimized for low-latency inference on a resource-constrained edge device.",
-        "Implemented voice guidance that converts detections into spoken cues, enabling hands-free assistive navigation.",
+        "Developed AI-powered smart glasses designed to assist visually impaired individuals by providing real-time object detection and environmental awareness.",
+        "Integrated embedded hardware including Raspberry Pi, camera modules, sensors, and audio feedback systems with computer vision models for intelligent assistance.",
+        "Built an edge AI pipeline capable of processing visual information and delivering real-time voice-based insights to improve user independence and accessibility.",
     ],
 )
 project(
     "DealHunt", "AI-Powered Deal Discovery Platform",
     "React, Node.js, Express.js, MongoDB, Firebase",
     [
-        "Developed a full-stack community platform with secure authentication, user profiles, and deal management backed by scalable REST APIs.",
-        "Integrated AI-powered personalized deal recommendations and a responsive UI for a seamless user experience.",
+        "Built an AI-powered e-commerce platform that aggregates products from multiple online retailers, enabling users to compare prices and discover the best deals.",
+        "Implemented intelligent search, personalized product recommendations, and real-time deal discovery to enhance the shopping experience.",
     ],
 )
 project(
     "AI Telegram News Assistant", "Automated AI News Pipeline",
-    "Python, n8n, Telegram Bot API, OpenAI API, Gemini API",
+    "Python, n8n, Telegram Bot API, OpenAI API",
     [
         "Engineered an Agentic AI Telegram bot that fetches, summarizes, and categorizes news from multiple sources using LLM-driven processing.",
         "Automated scheduling and personalized delivery through event-driven n8n workflows.",
@@ -338,7 +343,6 @@ section_header(doc, "Achievements")
 for a in [
     "Qualified the GATE Computer Science examination while pursuing a B.E. in Electronics & Communication Engineering.",
     "Solved 170+ Data Structures & Algorithms problems on GeeksforGeeks, ranking 16th on the institute leaderboard.",
-    "Built an AI-powered mental wellness application with a team of two at the Hackfinity 2025 Hackathon.",
 ]:
     bullet(doc, a)
 
