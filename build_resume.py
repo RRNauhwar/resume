@@ -27,12 +27,17 @@ from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 
 # ---------------------------------------------------------------- palette / fonts
-ACCENT_DARK  = RGBColor(0x03, 0x69, 0xA1)
+# Match the reference (Madhu) template: gray section bars with black text,
+# an all-black text theme, and blue only for the email / LinkedIn / GitHub links.
+ACCENT_DARK  = RGBColor(0x1A, 0x1A, 0x1A)   # emphasis / labels -> black
 INK          = RGBColor(0x1A, 0x1A, 0x1A)
 MUTED        = RGBColor(0x33, 0x33, 0x33)
 WHITE        = RGBColor(0xFF, 0xFF, 0xFF)
-ACCENT_HEX      = "0EA5E9"
-ACCENT_DARK_HEX = "0369A1"
+LINK         = RGBColor(0x05, 0x63, 0xC1)   # hyperlink blue (email / LinkedIn / GitHub)
+BAR_TEXT     = RGBColor(0x1A, 0x1A, 0x1A)   # section-bar text -> black
+BAR_HEX         = "D9D9D9"   # section-bar fill -> light gray
+EDU_HEAD_RULE   = "000000"   # education table header rules -> black
+RULE_HEX        = "000000"   # header divider rule -> black
 FONT = "Times New Roman"
 LOGO = "ccet_logo.png"
 
@@ -110,11 +115,11 @@ def section_header(doc, title):
     tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
     no_table_borders(tbl)
     cell = tbl.rows[0].cells[0]
-    set_cell_bg(cell, ACCENT_HEX)
+    set_cell_bg(cell, BAR_HEX)
     set_cell_margins(cell, top=8, bottom=8, left=100, right=100)
     p = cell.paragraphs[0]
     space(p, before=0, after=0, line=1.0)
-    add_run(p, title.upper(), size=10, bold=True, color=WHITE)
+    add_run(p, title.upper(), size=10, bold=True, color=BAR_TEXT)
     sp = doc.add_paragraph()
     space(sp, before=0, after=1, exact=3)
     return tbl
@@ -133,7 +138,7 @@ def bullet(doc, text, size=BODY, after=1.0, indent=0.22):
 # ---------------------------------------------------------------- document setup
 doc = Document()
 sec = doc.sections[0]
-sec.top_margin = Inches(0.4); sec.bottom_margin = Inches(0.4)
+sec.top_margin = Inches(0.35); sec.bottom_margin = Inches(0.35)
 sec.left_margin = Inches(0.5); sec.right_margin = Inches(0.5)
 
 normal = doc.styles["Normal"]
@@ -169,23 +174,25 @@ add_run(b3, "Chandigarh College of Engineering & Technology", size=8.5, color=MU
 
 set_cell_margins(contact_cell, top=0, bottom=0, left=40, right=0)
 contacts = [
-    ("Phone: ", "+91 78190 22307"),
-    ("Email: ", "rahulch19905@gmail.com"),
-    ("LinkedIn: ", "in/rahul-chaudhary-9a7b82310"),
-    ("GitHub: ", "github.com/RRNauhwar"),
-    ("Location: ", "Chandigarh, India"),
+    ("Phone: ", "+91 78190 22307", False),
+    ("Email: ", "rahulch19905@gmail.com", True),
+    ("LinkedIn: ", "in/rahul-chaudhary-9a7b82310", True),
+    ("GitHub: ", "github.com/RRNauhwar", True),
+    ("Location: ", "Chandigarh, India", False),
 ]
-for idx, (label, val) in enumerate(contacts):
+for idx, (label, val, is_link) in enumerate(contacts):
     cp = contact_cell.paragraphs[0] if idx == 0 else contact_cell.add_paragraph()
     space(cp, before=0, after=0, line=1.08)
-    add_run(cp, label, size=8, bold=True, color=ACCENT_DARK)
-    add_run(cp, val, size=8, color=MUTED)
+    add_run(cp, label, size=8, bold=True, color=INK)
+    r = add_run(cp, val, size=8, color=(LINK if is_link else MUTED))
+    if is_link:
+        r.underline = True
 
 rule = doc.add_paragraph(); space(rule, before=3, after=3, line=1.0)
 pPr = rule._p.get_or_add_pPr()
 pbdr = OxmlElement("w:pBdr"); bottom = OxmlElement("w:bottom")
 bottom.set(qn("w:val"), "single"); bottom.set(qn("w:sz"), "20")
-bottom.set(qn("w:space"), "1"); bottom.set(qn("w:color"), ACCENT_DARK_HEX)
+bottom.set(qn("w:space"), "1"); bottom.set(qn("w:color"), RULE_HEX)
 pbdr.append(bottom); pPr.append(pbdr)
 
 
@@ -197,24 +204,31 @@ edu.autofit = False; edu.allow_autofit = False
 ew = [Inches(3.05), Inches(2.85), Inches(0.85), Inches(0.75)]
 for i, (w, h) in enumerate(zip(ew, ["Qualification", "Institute", "Year", "Score"])):
     c = edu.rows[0].cells[i]; c.width = w
-    set_cell_bg(c, ACCENT_DARK_HEX); set_cell_margins(c, top=10, bottom=10, left=90, right=90)
+    set_cell_margins(c, top=10, bottom=10, left=90, right=90)
+    set_cell_borders(
+        c,
+        top={"sz": 8, "val": "single", "color": EDU_HEAD_RULE},
+        bottom={"sz": 6, "val": "single", "color": EDU_HEAD_RULE},
+    )
     p = c.paragraphs[0]; space(p, before=0, after=0, line=1.0)
-    add_run(p, h, size=8.5, bold=True, color=WHITE)
+    add_run(p, h, size=8.5, bold=True, color=INK)
 edu_rows = [
     ("B.E., Electronics & Communication Engineering",
      "Chandigarh College of Engineering & Technology", "2023 \u2013 2027*", "7.37"),
     ("Senior Secondary (Class XII), CBSE", "Kanha Makhan Public School", "2021", "82%"),
     ("Secondary (Class X), CBSE", "SRBS International School", "2019", "91.8%"),
 ]
-for row in edu_rows:
+for ridx, row in enumerate(edu_rows):
+    last = ridx == len(edu_rows) - 1
     cells = edu.add_row().cells
     for i, (val, w) in enumerate(zip(row, ew)):
         c = cells[i]; c.width = w
         set_cell_margins(c, top=10, bottom=10, left=90, right=90)
-        set_cell_borders(c, bottom={"sz": 4, "val": "single", "color": "D0D7DE"})
+        border_color = EDU_HEAD_RULE if last else "D0D7DE"
+        set_cell_borders(c, bottom={"sz": (6 if last else 4), "val": "single", "color": border_color})
         p = c.paragraphs[0]; space(p, before=0, after=0, line=1.0)
         if i == 3:
-            add_run(p, val, size=8.5, bold=True, color=ACCENT_DARK)
+            add_run(p, val, size=8.5, bold=True, color=INK)
         else:
             add_run(p, val, size=8.5, bold=(i == 0), color=(INK if i == 0 else MUTED))
 gp = doc.add_paragraph(); space(gp, before=1, after=1, exact=8)
