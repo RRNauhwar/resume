@@ -6,13 +6,14 @@
 <title>Rahul Chaudhary — Resume</title>
 <style>
   :root{
-    --accent:#0EA5E9;
-    --accent-dark:#0369A1;
+    --accent:#D9D9D9;        /* section-bar fill -> light gray (match Madhu) */
+    --accent-dark:#1a1a1a;   /* emphasis / labels -> black */
     --ink:#1a1a1a;
     --muted:#333333;
     --rule:#d0d7de;
+    --link:#0563C1;          /* email / LinkedIn / GitHub links */
   }
-  @page{ size: Letter; margin: 0.4in 0.5in; }
+  @page{ size: Letter; margin: 0.35in 0.5in; }
   *{ box-sizing:border-box; margin:0; padding:0; }
   html,body{
     font-family:"Times New Roman","Liberation Serif",serif;
@@ -32,39 +33,42 @@
   .identity .title{ font-size:10pt; font-weight:bold; color:var(--accent-dark); margin-top:1px; }
   .identity .line{ font-size:8.5pt; color:var(--muted); margin-top:1px; }
   .contact{ flex:0 0 2.1in; font-size:8.3pt; line-height:1.26; }
-  .contact div span{ font-weight:bold; color:var(--accent-dark); }
+  .contact div span{ font-weight:bold; color:var(--ink); }
   .contact div{ color:var(--muted); }
+  .contact div .lnk{ color:var(--link); text-decoration:underline; font-weight:normal; }
 
-  .rule{ border-bottom:2.2pt solid var(--accent-dark); margin:3px 0 3px; }
+  .rule{ border-bottom:2.2pt solid #000; margin:2px 0 2px; }
 
   /* ---------- section bar ---------- */
   .bar{
     background:var(--accent);
-    color:#fff;
+    color:var(--ink);
     font-weight:bold;
     font-size:10pt;
     letter-spacing:.4px;
     text-transform:uppercase;
-    padding:1.5px 8px;
-    margin:3px 0 1.5px;
+    padding:1px 8px;
+    margin:2px 0 1px;
   }
   section:first-of-type .bar{ margin-top:1px; }
   section:last-of-type .add:last-child{ margin-bottom:0; }
 
-  p.summary{ text-align:justify; color:var(--muted); margin-bottom:2px; }
+  p.summary{ text-align:justify; color:var(--muted); margin-bottom:1px; }
 
   /* ---------- education table ---------- */
   table.edu{ width:100%; border-collapse:collapse; font-size:9pt; }
   table.edu thead th{
-    background:var(--accent-dark); color:#fff; font-weight:bold;
+    background:none; color:var(--ink); font-weight:bold;
     text-align:left; padding:2px 7px;
+    border-top:1.4pt solid #000; border-bottom:1pt solid #000;
   }
   table.edu tbody td{ padding:2.5px 7px; border-bottom:.75pt solid var(--rule); color:var(--muted); }
+  table.edu tbody tr:last-child td{ border-bottom:1pt solid #000; }
   table.edu tbody td.q{ color:var(--ink); font-weight:bold; }
-  table.edu td.score{ color:var(--accent-dark); font-weight:bold; }
+  table.edu td.score{ color:var(--ink); font-weight:bold; }
   .gradnote{ font-size:7.5pt; font-style:italic; color:var(--muted); margin-top:1.5px; }
 
-  .skill{ margin:0 0 1.5px 2px; color:var(--muted); }
+  .skill{ margin:0 0 1px 2px; color:var(--muted); }
   .skill b{ color:var(--accent-dark); }
 
   .exp-head{ display:flex; justify-content:space-between; align-items:baseline; }
@@ -72,7 +76,7 @@
   .exp-head .role .co{ color:var(--accent-dark); }
   .exp-head .date{ font-size:9pt; font-style:italic; color:var(--muted); }
 
-  .proj{ margin-top:2px; }
+  .proj{ margin-top:1px; }
   .proj .ptitle{ font-size:9.8pt; font-weight:bold; }
   .proj .ptitle .sub{ font-weight:normal; font-style:italic; color:var(--accent-dark); font-size:9.3pt; }
   .proj .stack{ font-size:8.5pt; color:var(--muted); margin:.5px 0 1px 2px; }
@@ -83,7 +87,7 @@
   li:before{ content:"\2022"; position:absolute; left:2px; color:var(--accent-dark); font-weight:bold; }
   li b{ color:var(--ink); }
 
-  .cert{ padding-left:13px; position:relative; margin-bottom:1.5px; }
+  .cert{ padding-left:13px; position:relative; margin-bottom:1px; }
   .cert:before{ content:"\2022"; position:absolute; left:2px; color:var(--accent-dark); font-weight:bold; }
   .cert .ct{ font-weight:bold; color:var(--ink); font-size:9.3pt; }
   .cert .cp{ color:var(--muted); font-size:9pt; }
@@ -105,9 +109,9 @@
     </div>
     <div class="contact">
       <div><span>Phone:</span> +91 78190 22307</div>
-      <div><span>Email:</span> rahulch19905@gmail.com</div>
-      <div><span>LinkedIn:</span> in/rahul-chaudhary-9a7b82310</div>
-      <div><span>GitHub:</span> github.com/RRNauhwar</div>
+      <div><span>Email:</span> <span class="lnk">rahulch19905@gmail.com</span></div>
+      <div><span>LinkedIn:</span> <span class="lnk">in/rahul-chaudhary-9a7b82310</span></div>
+      <div><span>GitHub:</span> <span class="lnk">github.com/RRNauhwar</span></div>
       <div><span>Location:</span> Chandigarh, India</div>
     </div>
   </header>
