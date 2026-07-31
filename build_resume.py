@@ -241,10 +241,11 @@ s = doc.add_paragraph(); s.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
 space(s, before=0, after=2, exact=LINEH)
 add_run(
     s,
-    "Generative AI Engineer and Full Stack Developer who builds complete AI-powered products end to end. "
-    "Skilled in LLM applications, RAG pipelines, and agentic AI workflows with the OpenAI and Gemini APIs, "
-    "plus production-ready React and Node.js platforms with secure authentication and scalable REST APIs. "
-    "Focused on backend engineering, AI automation, and reliable systems that solve real-world problems.",
+    "Generative AI Engineer and Full Stack Developer who builds complete AI products end to end. "
+    "Skilled in LLM applications and prompt-orchestration pipelines over the "
+    "OpenAI, Gemini, and Anthropic APIs, plus production-ready React/Node.js and Android apps "
+    "with secure auth and layered API security. "
+    "Focused on backend engineering, AI automation, and reliable real-world systems.",
     size=BODY, color=MUTED,
 )
 
@@ -252,10 +253,10 @@ add_run(
 # ---------------------------------------------------------------- TECHNICAL SKILLS
 section_header(doc, "Technical Skills")
 skills = [
-    ("Languages", "Python, JavaScript, Java, C++"),
-    ("Web & Databases", "React, Node.js, Express.js, REST APIs, MongoDB, PostgreSQL, Supabase"),
-    ("Generative AI", "OpenAI API, Gemini API, Prompt Engineering, RAG, Agentic AI, Workflow Automation"),
-    ("Tools & Embedded", "Git, GitHub, Docker, Postman, n8n, Raspberry Pi, Computer Vision, YOLO"),
+    ("Languages", "Python, JavaScript, Java, Kotlin, C++"),
+    ("Web & Databases", "React, Node.js, Express.js, REST APIs, MongoDB, PostgreSQL, Prisma, Redis, Supabase"),
+    ("Generative AI", "OpenAI, Gemini & Anthropic APIs, Prompt Engineering, LLM Orchestration, Workflow Automation"),
+    ("Mobile & Tools", "Android (Jetpack Compose, Room, Hilt), Docker, Git, Postman, n8n, Raspberry Pi, YOLO"),
 ]
 for label, items in skills:
     p = doc.add_paragraph(); p.paragraph_format.left_indent = Inches(0.05)
@@ -274,7 +275,7 @@ add_run(eh, "\t", size=BODY)
 add_run(eh, "June 2025 \u2013 July 2025", size=8.5, italic=True, color=MUTED)
 for b in [
     "Built AI automation workflows in n8n and integrated the OpenAI and Gemini APIs to orchestrate multi-step, LLM-driven business processes.",
-    "Developed a Telegram chatbot and Python automation scripts to handle user queries and eliminate repetitive manual tasks through API integrations.",
+    "Built a Telegram chatbot and Python scripts to handle user queries and automate repetitive manual tasks through API integrations.",
 ]:
     bullet(doc, b)
 
@@ -297,10 +298,10 @@ def project(name, subtitle, stack, bullets):
 
 project(
     "NyayaSim", "AI-Powered Virtual Courtroom",
-    "React, Node.js, Express.js, Supabase, PostgreSQL, OpenAI API, Gemini API",
+    "React, Node.js, Express.js, Kotlin (Android), Supabase Auth, OpenAI / Gemini / Anthropic APIs",
     [
-        "Architected an AI courtroom using Generative and Agentic AI to simulate judges, witnesses, and legal arguments, with secure authentication, case management, and digital evidence modules.",
-        "Designed scalable REST APIs following Clean Architecture and SOLID principles for maintainable backend services.",
+        "Architected an AI courtroom (React, Node/Express, Kotlin Android) where LLM personas play the judge, opposing counsel, and witnesses in English and Hindi, citing Indian statutes.",
+        "Built a provider-agnostic LLM layer (OpenAI/Gemini/Anthropic) with automatic fallback and production-style security (JWT auth, RBAC, CSRF, rate limiting, audit logging), following Clean Architecture and SOLID.",
     ],
 )
 project(
@@ -359,15 +360,18 @@ for a in [
 
 # ---------------------------------------------------------------- INTERESTS & ADDITIONAL
 section_header(doc, "Technical Interests & Additional Information")
-for label, val in [
-    ("Technical Interests:  ", "Generative AI, AI Automation, Agentic AI, Backend System Design"),
-    ("Extra-Curricular:  ", "Chess, Space & Astronomy"),
-    ("Languages:  ", "English, Hindi, German (Beginner)"),
-]:
-    p = doc.add_paragraph(); p.paragraph_format.left_indent = Inches(0.05)
-    space(p, before=0, after=1, exact=LINEH)
-    add_run(p, label, size=BODY, bold=True, color=ACCENT_DARK)
-    add_run(p, val, size=BODY, color=MUTED)
+# first line: technical interests
+p = doc.add_paragraph(); p.paragraph_format.left_indent = Inches(0.05)
+space(p, before=0, after=1, exact=LINEH)
+add_run(p, "Technical Interests:  ", size=BODY, bold=True, color=ACCENT_DARK)
+add_run(p, "Generative AI, AI Automation, Agentic AI, Backend System Design", size=BODY, color=MUTED)
+# second line: extra-curricular + languages merged to save vertical space
+p = doc.add_paragraph(); p.paragraph_format.left_indent = Inches(0.05)
+space(p, before=0, after=1, exact=LINEH)
+add_run(p, "Extra-Curricular:  ", size=BODY, bold=True, color=ACCENT_DARK)
+add_run(p, "Chess, Space & Astronomy    \u2022    ", size=BODY, color=MUTED)
+add_run(p, "Languages:  ", size=BODY, bold=True, color=ACCENT_DARK)
+add_run(p, "English, Hindi, German (Beginner)", size=BODY, color=MUTED)
 
 
 # ---------------------------------------------------------------- save

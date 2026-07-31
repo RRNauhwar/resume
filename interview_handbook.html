@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Rahul Chaudhary — Complete Interview Preparation Handbook</title>
+<style>
+  :root{
+    --ink:#141821;
+    --muted:#3d4552;
+    --soft:#5c6675;
+    --brand:#0b5cab;
+    --brand-dark:#083b6e;
+    --accent:#0e7c5a;
+    --danger:#b02a1f;
+    --warn:#b7791f;
+    --line:#d6dce5;
+    --bg-soft:#f4f7fb;
+    --bg-code:#0f172a;
+  }
+  @page{
+    size: A4;
+    margin: 20mm 16mm 18mm 16mm;
+    @bottom-center{
+      content: "Rahul Chaudhary — Interview Preparation Handbook";
+      font-family: Georgia, serif; font-size: 8pt; color: #8a93a3;
+    }
+    @bottom-right{
+      content: "Page " counter(page);
+      font-family: Georgia, serif; font-size: 8pt; color: #8a93a3;
+    }
+  }
+  @page cover{ margin: 0; }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color:var(--ink); font-size:10.2pt; line-height:1.5;
+  }
+  h1,h2,h3,h4{ font-family: Georgia, "Times New Roman", serif; color:var(--brand-dark); line-height:1.2; }
+  code, pre, .mono{ font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+
+  /* ---------- cover ---------- */
+  .cover{
+    page: cover; position:relative; height:297mm; width:100%;
+    background: linear-gradient(150deg, #083b6e 0%, #0b5cab 55%, #0e7c5a 130%);
+    color:#fff; padding:38mm 24mm; overflow:hidden;
+  }
+  .cover .kicker{ font-size:11pt; letter-spacing:3px; text-transform:uppercase; color:#bfe0ff; margin-bottom:14mm; }
+  .cover h1{ color:#fff; font-size:41pt; margin:0 0 6mm; line-height:1.05; }
+  .cover .sub{ font-size:15pt; color:#eaf3ff; font-weight:300; margin-bottom:20mm; }
+  .cover .meta{ font-size:10.5pt; color:#dbe9fb; line-height:1.9; border-top:1px solid rgba(255,255,255,.35); padding-top:8mm; width:75%; }
+  .cover .meta b{ color:#fff; }
+  .cover .badge{
+    position:absolute; bottom:26mm; left:24mm; right:24mm;
+    background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.28);
+    border-radius:10px; padding:6mm 8mm; font-size:9.2pt; color:#eaf3ff;
+  }
+  .cover .badge b{ color:#fff; }
+
+  /* ---------- structure ---------- */
+  .section{ page-break-before: always; }
+  .sec-head{
+    border-left:6px solid var(--brand); padding:4mm 0 4mm 6mm; margin:0 0 6mm;
+    background:linear-gradient(90deg, var(--bg-soft), #fff);
+  }
+  .sec-head .num{ font-size:9pt; letter-spacing:2px; text-transform:uppercase; color:var(--brand); font-family:"Segoe UI",sans-serif; font-weight:700; }
+  .sec-head h2{ margin:1mm 0 0; font-size:21pt; }
+  h3{ font-size:13.5pt; margin:8mm 0 2mm; border-bottom:2px solid var(--line); padding-bottom:1.5mm; }
+  h4{ font-size:11.4pt; margin:5mm 0 1mm; color:var(--brand); }
+  p{ margin:2mm 0; }
+  ul,ol{ margin:2mm 0 3mm; padding-left:6mm; }
+  li{ margin:1mm 0; }
+  a{ color:var(--brand); text-decoration:none; }
+
+  /* ---------- toc ---------- */
+  .toc{ page-break-after: always; }
+  .toc ol{ list-style:none; padding:0; counter-reset: toc; }
+  .toc li{ counter-increment: toc; padding:2.4mm 0; border-bottom:1px dashed var(--line); font-size:11pt; }
+  .toc li:before{ content: counter(toc) ".  "; color:var(--brand); font-weight:700; }
+  .toc .desc{ color:var(--soft); font-size:9pt; display:block; margin-left:7mm; }
+
+  /* ---------- cards & callouts ---------- */
+  .card{ border:1px solid var(--line); border-radius:8px; padding:4mm 5mm; margin:3mm 0; background:#fff; }
+  .qa{ border:1px solid var(--line); border-left:4px solid var(--brand); border-radius:6px; padding:3mm 4mm; margin:3mm 0; background:#fdfefe; page-break-inside: avoid; }
+  .qa .q{ font-weight:700; color:var(--brand-dark); }
+  .qa .why{ font-size:9pt; color:var(--soft); font-style:italic; margin:1mm 0; }
+  .qa .a{ margin:1.5mm 0; }
+  .qa .mistake{ font-size:9.2pt; color:var(--danger); }
+  .qa .follow{ font-size:9.2pt; color:var(--accent); }
+  .tag{ display:inline-block; font-size:7.6pt; font-weight:700; text-transform:uppercase; letter-spacing:.6px;
+        padding:.6mm 2mm; border-radius:3px; vertical-align:middle; margin-right:2mm; }
+  .t-beg{ background:#e6f4ea; color:#136c3a; }
+  .t-int{ background:#e7f0fb; color:#0b5cab; }
+  .t-adv{ background:#fdeee0; color:#b7791f; }
+  .t-exp{ background:#fbe7e6; color:#b02a1f; }
+  .callout{ border-radius:8px; padding:3.5mm 5mm; margin:3mm 0; font-size:9.6pt; }
+  .c-good{ background:#eaf7f0; border-left:4px solid var(--accent); }
+  .c-warn{ background:#fdf4e3; border-left:4px solid var(--warn); }
+  .c-bad{ background:#fbecea; border-left:4px solid var(--danger); }
+  .c-info{ background:#eaf1fb; border-left:4px solid var(--brand); }
+
+  table{ border-collapse:collapse; width:100%; margin:3mm 0; font-size:9.1pt; }
+  th,td{ border:1px solid var(--line); padding:2mm 2.6mm; text-align:left; vertical-align:top; }
+  th{ background:var(--brand-dark); color:#fff; font-family:"Segoe UI",sans-serif; font-size:8.6pt; letter-spacing:.3px; }
+  tr:nth-child(even) td{ background:var(--bg-soft); }
+  .score{ font-weight:700; }
+  .s-hi{ color:var(--accent); } .s-mid{ color:var(--warn); } .s-lo{ color:var(--danger); }
+
+  pre{ background:var(--bg-code); color:#e6edf3; padding:3.5mm 4mm; border-radius:7px; font-size:8.5pt; line-height:1.45; overflow-x:auto; white-space:pre-wrap; word-break:break-word; }
+  pre .cm{ color:#8b98a5; }
+  code.inl{ background:#eef2f7; color:#b02a1f; padding:.2mm 1.2mm; border-radius:3px; font-size:8.8pt; }
+  .stars{ color:#e0a800; letter-spacing:1px; }
+  .file{ font-family:monospace; font-size:8.6pt; color:var(--accent); }
+  .lead{ font-size:11pt; color:var(--muted); }
+  .divider{ height:2px; background:linear-gradient(90deg,var(--brand),transparent); margin:6mm 0; border:0; }
+  .pill{ display:inline-block; background:var(--bg-soft); border:1px solid var(--line); border-radius:20px; padding:1mm 3mm; font-size:8.6pt; margin:1mm 1mm 0 0; }
+  .small{ font-size:8.8pt; color:var(--soft); }
+</style>
+</head>
+<body>
+
+<!-- ===================== COVER ===================== -->
+<div class="cover">
+  <div class="kicker">Complete Interview Preparation Handbook</div>
+  <h1>Rahul Chaudhary</h1>
+  <div class="sub">Generative AI Engineer &nbsp;|&nbsp; Full Stack Developer<br/>Evidence-Based Resume &amp; Codebase Interview Playbook</div>
+  <div class="meta">
+    <b>Candidate:</b> Rahul Chaudhary &nbsp;·&nbsp; B.E. Electronics &amp; Communication Engineering, CCET<br/>
+    <b>GitHub:</b> github.com/RRNauhwar &nbsp;·&nbsp; <b>Target roles:</b> GenAI / AI Engineer, Full Stack, Backend<br/>
+    <b>Prepared as:</b> Senior Interviewer · Hiring Manager · ATS Reviewer · Principal Engineer<br/>
+    <b>Scope:</b> 12 sections — Resume audit, code validation, 900+ questions, project deep-dives, behavioral, HR, coding, company prep, revision &amp; cheat sheet
+  </div>
+  <div class="badge">
+    <b>Grounded in real evidence.</b> Every technical claim in this handbook was checked against your actual source code on GitHub (NyayaSim / Legal-Ai-App, TradeLab-AI, Bookstore-DBMS). Where the resume and the code disagree, this book tells you exactly where — <i>before an interviewer finds it.</i>
+  </div>
+</div>
+
+<!-- ===================== HOW TO USE ===================== -->
+<div class="section">
+  <div class="sec-head"><div class="num">Read this first</div><h2>How to Use This Handbook</h2></div>
+  <p class="lead">This is not a generic question dump. It was built by reading your resume line by line and then opening your actual repositories to check whether the code backs up the words. That is exactly what a strong interviewer does.</p>
+
+  <div class="callout c-info">
+    <b>The single most important thing to understand:</b> your resume describes NyayaSim as a <i>“React, Node.js, Express.js, Supabase, PostgreSQL”</i> project. Your code tells a richer and slightly different story — there is also a full <b>Kotlin/Jetpack Compose Android app</b>, the deployed AI model is <b>Anthropic Claude</b> (not OpenAI/Gemini), and the backend persists data in a <b>JSON flat file</b>, not PostgreSQL. None of this is bad — but you must be the one who explains it, not the interviewer who discovers it.
+  </div>
+
+  <h4>How the question cards work</h4>
+  <div class="qa">
+    <div class="q">Q. Sample question appears in bold like this.</div>
+    <div class="why">Why they ask: the hidden signal the interviewer is testing for.</div>
+    <div class="a"><b>Ideal answer:</b> a concrete, evidence-backed response you can actually defend.</div>
+    <div class="mistake">✗ Common mistake: the trap most candidates fall into.</div>
+    <div class="follow">↳ Follow-up: where the interviewer will push next.</div>
+  </div>
+
+  <p>Difficulty tags used throughout:
+    <span class="tag t-beg">Beginner</span>
+    <span class="tag t-int">Intermediate</span>
+    <span class="tag t-adv">Advanced</span>
+    <span class="tag t-exp">Expert / Staff</span>
+  </p>
+  <p>Priority stars mark how likely a question is, given <i>your specific</i> resume:
+     <span class="stars">★★★★★</span> almost certain &nbsp;·&nbsp; <span class="stars">★★★☆☆</span> likely &nbsp;·&nbsp; <span class="stars">★★☆☆☆</span> possible.</p>
+
+  <div class="callout c-warn">
+    <b>Golden rule for every answer:</b> explain it simply first (as if to a smart non-engineer), then add the technical depth. Never claim something the code cannot back up. If you are unsure, say <i>“Here’s what I built, and here’s what I’d do differently now”</i> — honesty plus growth beats bravado every time.
+  </div>
+</div>
+
+<!-- ===================== TABLE OF CONTENTS ===================== -->
+<div class="section toc">
+  <div class="sec-head"><div class="num">Contents</div><h2>Table of Contents</h2></div>
+  <ol>
+    <li>Resume Audit <span class="desc">Section-by-section review, strengths, weaknesses, red flags, ATS, scores /10</span></li>
+    <li>Resume Validation vs. Code <span class="desc">Every claim rated: supported / partial / not supported — with file evidence</span></li>
+    <li>Complete Resume Interview Questions <span class="desc">Questions generated from every line: intro, why-this, challenges, trade-offs</span></li>
+    <li>Project-by-Project Deep Dive <span class="desc">NyayaSim, Smart Glasses, DealHunt, Telegram News — explanations, architecture, Q banks</span></li>
+    <li>Skills Verification <span class="desc">Per-skill basic→advanced→coding→scenario questions with strong-answer notes</span></li>
+    <li>Cross Questions <span class="desc">The skeptical interviewer: relentless follow-up chains until the topic is exhausted</span></li>
+    <li>Resume Weaknesses <span class="desc">Weak wording, unsupported buzzwords, missing metrics — with stronger rewrites</span></li>
+    <li>Behavioral Interview <span class="desc">STAR-format answers drawn from your real projects and achievements</span></li>
+    <li>HR Interview <span class="desc">Tell me about yourself, strengths/weaknesses, goals, salary, relocation</span></li>
+    <li>Coding Interview <span class="desc">Predicted DSA + SQL + OOP + API questions with complexity and tips</span></li>
+    <li>Company-Specific Preparation <span class="desc">Google, Amazon, Microsoft, Adobe, product companies, startups</span></li>
+    <li>Final Revision Guide + Night-Before Cheat Sheet <span class="desc">Top-N lists, one-page summaries, pitfalls, highest-probability questions</span></li>
+  </ol>
+  <p class="small">A note on completeness: your resume lists four projects but only <b>NyayaSim</b> (repo <span class="file">Legal-Ai-App</span>) is publicly available as source code, alongside two strong repos not on your resume (<span class="file">TradeLab-AI</span>, <span class="file">Bookstore-Database-Management-System</span>). DealHunt, Smart Glasses, and the AI Telegram News Assistant could not be located as public repositories, so their sections are based on your resume wording plus standard architecture for those stacks — and are clearly labelled as <b>unverified against code</b>.</p>
+</div>
+
+
+<!-- ===================== SECTION 1: RESUME AUDIT ===================== -->
+<div class="section">
+  <div class="sec-head"><div class="num">Section 1</div><h2>Resume Audit</h2></div>
+  <p class="lead">A section-by-section review the way a hiring manager reads it in the first 30 seconds — what they notice, what helps you, what hurts you, and a score out of 10.</p>
+
+  <div class="card">
+    <b>Overall first impression (recruiter's 6-second scan):</b> Clean one-page, ATS-friendly CCET template, strong keyword coverage (GenAI, RAG, Agentic AI, React/Node, Docker). Positioning as “Generative AI Engineer | Full Stack Developer” is current and marketable. The GATE CS qualification while doing an ECE degree is an eye-catching differentiator. Biggest risks: a few high-value buzzwords (RAG, Agentic AI, PostgreSQL) are not fully backed by the visible code, and your strongest engineering artifact — a complete Kotlin Android app — is invisible on the resume.
+    <br/><br/><b>Overall resume score: <span class="score s-mid">7.4 / 10</span></b> — a genuinely good student resume; the gap between claims and evidence is what stands between you and an 9.
+  </div>
+
+  <h3>1.1 Education &nbsp; <span class="score s-hi">8 / 10</span></h3>
+  <p><b>What they notice first:</b> B.E. ECE at CCET, expected 2027, CGPA 7.37, plus strong Class X (91.8%) and XII (82%).</p>
+  <ul>
+    <li><b>Strengths:</b> Clear table, reputable institute, consistent academic record. The “Expected graduation 2027” is honest and correctly flagged.</li>
+    <li><b>Weaknesses:</b> CGPA 7.37 is middling; some product companies filter at 7.5 or 8.0. You cannot change it, so you must out-signal it with projects, GATE, and DSA rank.</li>
+    <li><b>Red flags:</b> None. The date range is transparent.</li>
+    <li><b>ATS:</b> Real table text, standard heading — parses fine.</li>
+    <li><b>Improvement:</b> Consider adding one line of relevant coursework (Data Structures, DBMS, OOP, Computer Networks, OS) — it helps for a CS-adjacent role coming from an ECE degree, and feeds ATS keyword matching.</li>
+  </ul>
+
+  <h3>1.2 Professional Summary &nbsp; <span class="score s-mid">7 / 10</span></h3>
+  <p><b>What they notice first:</b> “builds complete AI-powered products end to end… LLM applications, RAG pipelines, and agentic AI workflows.”</p>
+  <ul>
+    <li><b>Strengths:</b> Tight, role-aligned, keyword-rich, no fluffy “hardworking team player” filler.</li>
+    <li><b>Weaknesses / red flag:</b> <span class="s-lo">“RAG pipelines”</span> is not demonstrated in any public repo (no vector store, no embeddings, no retrieval step). This is the single most dangerous word on your resume — see Section 2. “Agentic AI” is also a stretch relative to the code (multi-persona prompting, not autonomous tool-using agents).</li>
+    <li><b>Improvement:</b> Either (a) build one genuine RAG feature (embed the Indian legal sections / case corpus and retrieve them before prompting) so the claim becomes true, or (b) soften to “LLM applications and prompt-orchestration pipelines.” Do not leave an undefendable claim in the very first paragraph.</li>
+  </ul>
+
+  <h3>1.3 Technical Skills &nbsp; <span class="score s-mid">7 / 10</span></h3>
+  <ul>
+    <li><b>Strengths:</b> Well-grouped (Languages / Web &amp; DB / GenAI / Tools &amp; Embedded), all commonly-screened keywords present.</li>
+    <li><b>Weaknesses:</b> Two problems. (1) <b>Missing skills you actually demonstrate:</b> Kotlin, Android (Jetpack Compose), Room, Hilt/DI, MVVM, Prisma, Redis, SQL — all present in your repos but absent here. (2) <b>Skills that over-promise:</b> “RAG” and “Agentic AI” (see above). Listing a skill invites a deep question; only list what you can survive 4 follow-ups on.</li>
+    <li><b>Red flag:</b> “PostgreSQL” next to NyayaSim implies the NyayaSim backend uses Postgres. It does not — it uses a JSON file. Your real Postgres evidence is in the Bookstore and TradeLab-AI repos, which aren’t listed.</li>
+    <li><b>ATS:</b> Good. Comma-separated, parseable.</li>
+    <li><b>Improvement:</b> Add a “Mobile” or extend “Web &amp; Databases” line to include Kotlin/Android/Room; add Prisma &amp; Redis (backed by TradeLab-AI). Remove or qualify RAG until it’s real.</li>
+  </ul>
+
+  <h3>1.4 Experience — AI Automation Intern, D2 Automation &nbsp; <span class="score s-mid">7 / 10</span></h3>
+  <ul>
+    <li><b>Strengths:</b> Real internship, relevant stack (n8n + OpenAI/Gemini + Telegram bot + Python), action verbs, clear outcomes.</li>
+    <li><b>Weaknesses:</b> Short duration (June–July 2025 ≈ 2 months) will draw “what did you actually own?” questions. No metrics (how many workflows, how much manual time saved, how many queries handled).</li>
+    <li><b>Red flag / overlap:</b> The internship’s “Telegram chatbot” overlaps heavily with your project “AI Telegram News Assistant.” An interviewer may ask whether these are the same work counted twice. Have a crisp distinction ready.</li>
+    <li><b>Improvement:</b> Add one quantified bullet, e.g. “Automated N recurring workflows, cutting a ~X-hour manual task to minutes.” Even approximate, honestly-labelled numbers help.</li>
+  </ul>
+
+  <h3>1.5 Projects &nbsp; <span class="score s-mid">7.5 / 10</span></h3>
+  <ul>
+    <li><b>Strengths:</b> Four varied projects across GenAI, embedded/CV, and full-stack — good breadth for a student. NyayaSim is genuinely impressive and substantiated by real, well-structured code.</li>
+    <li><b>Weaknesses:</b> (1) Only one project (NyayaSim) is publicly verifiable; the other three have no locatable public repo, which is risky if an interviewer asks “can you share the code?”. (2) No metrics anywhere (users, latency numbers, accuracy, dataset size). (3) NyayaSim’s bullet claims “PostgreSQL” and “Agentic AI” that the code only partially supports.</li>
+    <li><b>Ordering:</b> Correct — NyayaSim first (strongest). But consider swapping DealHunt and Smart Glasses depending on the role: for AI roles keep the two AI-heavy ones up top; for embedded/hardware roles, promote Smart Glasses.</li>
+    <li><b>Improvement:</b> Add a GitHub link per project. Add one measurable outcome per project. Feature TradeLab-AI (a very strong full-stack + AI + Prisma/Redis/Docker repo) — it may be more impressive than DealHunt.</li>
+  </ul>
+
+  <h3>1.6 Certifications &nbsp; <span class="score s-hi">8 / 10</span></h3>
+  <ul>
+    <li><b>Strengths:</b> Relevant and coherent (Python, Full-Stack GenAI, Web Dev, a govt-backed drone bootcamp with a concrete score 27/30). They map directly to the target role.</li>
+    <li><b>Weaknesses:</b> Udemy certificates carry limited weight at top product companies; they signal initiative more than mastery. The interviewer will test whether you retained the content, not that you finished it.</li>
+    <li><b>Improvement:</b> Keep them, but be ready to demonstrate depth beyond “I did the course” — tie each cert to something you built.</li>
+  </ul>
+
+  <h3>1.7 Achievements &nbsp; <span class="score s-hi">8.5 / 10</span></h3>
+  <ul>
+    <li><b>Strengths:</b> This is your strongest differentiator block. <b>GATE CS qualified</b> (from an ECE background) signals CS fundamentals; <b>170+ DSA problems, 16th on institute leaderboard</b> signals coding discipline; a hackathon build signals delivery under pressure.</li>
+    <li><b>Weaknesses:</b> “GATE qualified” without a score/rank is weaker than “GATE CS, score X / AIR Y.” “170+ on GeeksforGeeks” is good but LeetCode is the currency most product companies recognize.</li>
+    <li><b>Improvement:</b> Add the GATE score/rank if respectable. Consider mirroring some DSA onto LeetCode and citing that count too.</li>
+  </ul>
+
+  <h3>1.8 GitHub &nbsp; <span class="score s-mid">6.5 / 10</span></h3>
+  <ul>
+    <li><b>Strengths:</b> Active, public, many repos across TypeScript/Python/Java — shows consistent building.</li>
+    <li><b>Weaknesses / red flags an interviewer will find:</b> (1) Most repos have <b>no README, no description, no license</b>. (2) The repo behind NyayaSim is named <span class="file">Legal-Ai-App</span>, not “NyayaSim,” so a recruiter searching your GitHub for “NyayaSim” finds nothing — a naming mismatch that looks like the project doesn’t exist. (3) Build artifacts (<span class="file">android/build/</span>, <span class="file">.gradle/</span>) are committed, which reads as inexperience with <span class="file">.gitignore</span> hygiene. (4) DealHunt / Smart Glasses / Telegram News are not present as public repos.</li>
+    <li><b>Improvement (high ROI, do this before applying):</b> Add a clear README with screenshots + live link to your top 3 repos; rename or clearly map <span class="file">Legal-Ai-App</span> → NyayaSim; add <span class="file">.gitignore</span> and remove committed build folders; pin your 4 best repos on your profile.</li>
+  </ul>
+
+  <h3>1.9 LinkedIn &nbsp; <span class="score s-mid">7 / 10</span></h3>
+  <ul>
+    <li><b>Strengths:</b> Present and linked, custom-ish URL.</li>
+    <li><b>Weaknesses:</b> Can’t audit its content here, but ensure headline, About, and Projects mirror the resume exactly (same project names, same stacks). Inconsistencies between resume and LinkedIn are a classic trust-eroder.</li>
+    <li><b>Improvement:</b> Mirror this handbook’s corrected wording onto LinkedIn; add the GitHub repo links.</li>
+  </ul>
+
+  <h3>1.10 Contact / Header / Formatting &nbsp; <span class="score s-hi">9 / 10</span></h3>
+  <ul>
+    <li><b>Strengths:</b> One page, serif template, no photo, no rating bars, real selectable text, phone/email/LinkedIn/GitHub/location all present. This is textbook ATS-safe.</li>
+    <li><b>Minor:</b> The college logo in the header is harmless for ATS since the text is separate, but some aggressive parsers ignore header/footer zones — keep the critical contact text in the body if you ever see parsing issues.</li>
+  </ul>
+
+  <hr class="divider"/>
+  <h3>1.11 Section Scorecard</h3>
+  <table>
+    <tr><th>Section</th><th>Score</th><th>One-line verdict</th></tr>
+    <tr><td>Education</td><td class="score s-hi">8.0</td><td>Solid; add relevant coursework, CGPA is the only soft spot.</td></tr>
+    <tr><td>Professional Summary</td><td class="score s-mid">7.0</td><td>Strong voice, but "RAG pipelines" is undefendable as written.</td></tr>
+    <tr><td>Technical Skills</td><td class="score s-mid">7.0</td><td>Good coverage; add Kotlin/Android/Prisma/Redis, qualify RAG.</td></tr>
+    <tr><td>Experience</td><td class="score s-mid">7.0</td><td>Real and relevant; needs metrics and separation from Telegram project.</td></tr>
+    <tr><td>Projects</td><td class="score s-mid">7.5</td><td>Great breadth; only 1 of 4 is publicly verifiable, no metrics.</td></tr>
+    <tr><td>Certifications</td><td class="score s-hi">8.0</td><td>Relevant and coherent; be ready to prove retained depth.</td></tr>
+    <tr><td>Achievements</td><td class="score s-hi">8.5</td><td>Your best block — GATE + DSA rank + hackathon.</td></tr>
+    <tr><td>GitHub</td><td class="score s-mid">6.5</td><td>Active but messy: naming mismatch, no READMEs, committed build files.</td></tr>
+    <tr><td>LinkedIn</td><td class="score s-mid">7.0</td><td>Ensure 1:1 consistency with resume.</td></tr>
+    <tr><td>Formatting / ATS</td><td class="score s-hi">9.0</td><td>Clean, one-page, parseable — excellent.</td></tr>
+    <tr><td><b>Overall</b></td><td class="score s-mid"><b>7.4</b></td><td>Good student resume; close the claim-vs-evidence gap to reach 9.</td></tr>
+  </table>
+</div>
+
+
+<!-- ===================== SECTION 2: RESUME VALIDATION ===================== -->
+<div class="section">
+  <div class="sec-head"><div class="num">Section 2</div><h2>Resume Validation vs. Actual Code</h2></div>
+  <p class="lead">Every technical claim on your resume, checked against your real repositories. This is what a diligent interviewer does when they open your GitHub during or after the call. Read this section twice — it is where interviews are won or lost.</p>
+
+  <div class="callout c-info">
+    <b>Repositories inspected:</b>
+    <span class="pill">Legal-Ai-App = <b>NyayaSim</b> (React + Node/Express + Kotlin Android)</span>
+    <span class="pill">TradeLab-AI (React + Node + Prisma/PostgreSQL + Redis)</span>
+    <span class="pill">Bookstore-Database-Management-System (PostgreSQL/SQL)</span>
+    <br/><span class="small">Not locatable as public repos: DealHunt, Smart Glasses for the Visually Impaired, AI Telegram News Assistant.</span>
+  </div>
+
+  <h3>2.1 Claim-by-Claim Verdict</h3>
+  <table>
+    <tr><th style="width:31%">Resume claim</th><th style="width:13%">Verdict</th><th>Evidence in code (or lack of it)</th></tr>
+    <tr><td>React / Node.js / Express.js full-stack</td><td class="s-hi">Fully supported</td><td><span class="file">frontend/</span> React 18 + Vite + react-router; <span class="file">backend/server.js</span> Express (ESM) with modular routers. Solid.</td></tr>
+    <tr><td>Secure authentication</td><td class="s-hi">Supported</td><td>Supabase auth on client (<span class="file">utils/supabase.js</span>); backend <span class="file">middleware/security.js</span> verifies Bearer token via Supabase <code class="inl">/auth/v1/user</code>, role model (student/lawyer/judge/admin/college/recruiter), <code class="inl">requireRole</code>.</td></tr>
+    <tr><td>Scalable REST APIs, Clean Architecture &amp; SOLID</td><td class="s-mid">Partial</td><td>REST routers are clean and layered (routes → services → db); the <b>Android</b> app is genuinely clean-architecture (core/data, core/domain, feature, DI). But "scalable" is undercut by a <b>JSON-file datastore</b> (see below). Defend the design intent, concede the datastore.</td></tr>
+    <tr><td>OpenAI API</td><td class="s-hi">Supported</td><td><span class="file">services/claudeService.js</span> → <code class="inl">askViaOpenAI()</code> (gpt-4o-mini, chat/completions).</td></tr>
+    <tr><td>Gemini API</td><td class="s-hi">Supported</td><td>Same file → <code class="inl">askViaGemini()</code> calls <code class="inl">generativelanguage.googleapis.com</code> (gemini-2.5-flash). README instructs setting <code class="inl">GEMINI_API_KEY</code>.</td></tr>
+    <tr><td>Supabase</td><td class="s-hi">Supported</td><td>Used for auth (client + server token verification). Note: optional — app falls back to guest/offline mode.</td></tr>
+    <tr><td><b>PostgreSQL (for NyayaSim)</b></td><td class="s-lo">Not supported (as implied)</td><td><b>The NyayaSim backend stores data in a flat JSON file</b> (<span class="file">services/db.js</span>, a custom <code class="inl">JSONDatabase</code> writing <span class="file">data/db.json</span>). No Postgres client, no SQL, no schema in the backend. Postgres only appears indirectly because Supabase is Postgres-backed. <b>Real Postgres evidence lives in other repos</b> (Bookstore, TradeLab-AI) that aren't on your resume.</td></tr>
+    <tr><td>Generative AI (simulate judges/witnesses/arguments)</td><td class="s-hi">Supported</td><td>10+ LLM functions: <code class="inl">generateCase</code>, <code class="inl">judgeRespond</code>, <code class="inl">aiLawyerRespond</code>, <code class="inl">witnessAnswer</code>, <code class="inl">handleObjection</code>, <code class="inl">deliverJudgment</code>, etc. Genuinely impressive prompt engineering.</td></tr>
+    <tr><td><b>Agentic AI</b></td><td class="s-mid">Weakly supported</td><td>These are <b>multi-persona single-shot prompts</b> with role system-messages and short history windows — orchestration, not autonomous agents (no tool-use loop, no planner, no self-directed multi-step execution). Defensible if you define "agentic" carefully; risky if you overclaim.</td></tr>
+    <tr><td><b>RAG pipelines (summary line)</b></td><td class="s-lo">Not supported</td><td>No embeddings, no vector DB, no retrieval-then-generate step in any inspected repo. <code class="inl">getPrecedents()</code> just asks the LLM to produce precedents ("mock or real") — that is generation, not retrieval. <b>This is your biggest exposure.</b></td></tr>
+    <tr><td>Docker</td><td class="s-mid">Partial</td><td>Not in NyayaSim (deploys via <span class="file">render.yaml</span>). But <span class="file">TradeLab-AI/docker-compose.yml</span> is real Docker evidence — cite that repo when asked.</td></tr>
+    <tr><td>MongoDB (DealHunt)</td><td class="s-mid">Unverifiable</td><td>No public DealHunt repo found. You must be ready to show it privately or discuss carefully.</td></tr>
+    <tr><td>Firebase (DealHunt)</td><td class="s-mid">Unverifiable</td><td>Same as above.</td></tr>
+    <tr><td>YOLO / Raspberry Pi / Computer Vision (Smart Glasses)</td><td class="s-mid">Unverifiable</td><td>No public repo found. Prepare to explain model, dataset, FPS, and hardware honestly.</td></tr>
+    <tr><td>n8n / Telegram Bot API (Telegram News + internship)</td><td class="s-mid">Unverifiable (code)</td><td>n8n workflows are often JSON exports not on GitHub. Plausible given the internship; be ready to describe nodes and triggers.</td></tr>
+    <tr><td>GATE CS qualified</td><td class="s-hi">External</td><td>Verifiable via scorecard — bring it. High-trust credential.</td></tr>
+    <tr><td>170+ DSA, 16th on institute leaderboard</td><td class="s-hi">External</td><td>Verifiable on your GeeksforGeeks profile.</td></tr>
+  </table>
+
+  <h3>2.2 The Three Claims That Can Sink You (and how to neutralise each)</h3>
+
+  <div class="callout c-bad">
+    <b>1. "RAG pipelines."</b> If an interviewer says <i>"walk me through your RAG pipeline — what's your chunking strategy, embedding model, and vector store?"</i> and you have none, your credibility on the entire GenAI section collapses.
+    <br/><b>Fix (choose one, before interviewing):</b>
+    <ul>
+      <li><b>Make it true:</b> Add real retrieval to NyayaSim — embed the IPC/CrPC/Evidence-Act sections and a case corpus (e.g., with a local vector store or pgvector on Supabase), retrieve top-k before <code class="inl">generateCase</code>/<code class="inl">getPrecedents</code>, and cite sources. This is a weekend feature that converts a lie into a highlight.</li>
+      <li><b>Reframe honestly:</b> If not yet built, describe it as "LLM applications with structured prompt orchestration; RAG is my next step and here's exactly how I'd add it" — then explain the design. Interviewers respect a precise plan over a vague claim.</li>
+    </ul>
+  </div>
+
+  <div class="callout c-warn">
+    <b>2. "PostgreSQL" implying the NyayaSim backend uses it.</b> When asked <i>"show me your schema / how do you query users?"</i>, be first to clarify: <i>"NyayaSim uses Supabase (Postgres-backed) for auth; the app's own data is a lightweight JSON store I wrote for zero-config demos and offline mode. For production I'd move it to Postgres/Prisma — which I've actually done in my TradeLab-AI project, here's the schema."</i> You turn a gap into a demonstration of judgment plus a second project.
+  </div>
+
+  <div class="callout c-warn">
+    <b>3. "Agentic AI."</b> Define your terms before they trap you: <i>"I use 'agentic' to mean multiple LLM personas — judge, opposing counsel, witnesses — each with its own system prompt and memory, coordinated by the backend. It is role-based orchestration. True tool-using autonomous agents (plan → act → observe loops) are the direction I'm taking it next."</i> Precise self-definition disarms the "that's not really agentic" gotcha.
+  </div>
+
+  <h3>2.3 What You're Under-Selling (fix upward, not down)</h3>
+  <div class="callout c-good">
+    <ul>
+      <li><b>A complete native Android app in Kotlin</b> — Jetpack Compose UI, Hilt dependency injection, Room (SQLite) local DB with <code class="inl">CaseEntity</code>/<code class="inl">CasesDao</code>, MVVM ViewModels, a Retrofit-style API layer, offline-seed cases, and textbook clean architecture (core/data · core/domain · feature · di). This is more architecturally mature than most student web projects and it is completely absent from your resume. <b>Add Kotlin, Android/Jetpack Compose, Room, Hilt, MVVM to your skills.</b></li>
+      <li><b>Real production-grade security middleware</b> — CSP, HSTS, X-Frame-Options, CSRF double-submit guard, layered rate limiting, upload MIME allowlist + size cap, and audit logging with hashed IPs. Very few juniors ship this. Talk about it.</li>
+      <li><b>A provider-agnostic LLM abstraction</b> — one <code class="inl">ask()</code> that transparently falls back OpenAI → Gemini → Anthropic. That is a genuinely good design decision; name it as such.</li>
+      <li><b>TradeLab-AI &amp; Bookstore repos</b> — these give you the PostgreSQL, Prisma, Redis, and Docker evidence your resume claims but NyayaSim can't prove. Put at least one on the resume.</li>
+    </ul>
+  </div>
+
+  <h3>2.4 Validation Summary</h3>
+  <table>
+    <tr><th>Category</th><th>Count</th><th>Items</th></tr>
+    <tr><td class="s-hi">Fully supported</td><td>8</td><td>React, Node/Express, OpenAI, Gemini, Supabase auth, GenAI simulation, security layer, GATE/DSA (external)</td></tr>
+    <tr><td class="s-mid">Partial / needs framing</td><td>4</td><td>Scalable/Clean-Arch REST, Agentic AI, Docker, Kotlin/Android (missing but real)</td></tr>
+    <tr><td class="s-lo">Not supported as written</td><td>2</td><td>RAG pipelines, PostgreSQL-for-NyayaSim</td></tr>
+    <tr><td class="s-mid">Unverifiable (no public repo)</td><td>4</td><td>DealHunt (Mongo/Firebase), Smart Glasses (YOLO/RPi), Telegram News, some n8n work</td></tr>
+  </table>
+  <p class="small">Bottom line: your resume is ~80% code-backed, which is above average. The remaining 20% is concentrated in two high-visibility GenAI buzzwords. Close those two gaps and your resume becomes bullet-proof under technical scrutiny.</p>
+</div>
+
+
+<!-- ===================== SECTION 3: RESUME INTERVIEW QUESTIONS ===================== -->
+<div class="section">
+  <div class="sec-head"><div class="num">Section 3</div><h2>Complete Resume Interview Questions</h2></div>
+  <p class="lead">Questions generated from every part of your resume — introduction, walkthroughs, why-this-choice, challenges, trade-offs, and more. Project-specific banks (100s of questions) are in Section 4; this section covers the resume as a whole.</p>
+
+  <h3>3.1 Resume Introduction &amp; "Tell Me About Yourself"</h3>
+
+  <div class="qa">
+    <div class="q">Q1. Tell me about yourself. <span class="stars">★★★★★</span></div>
+    <div class="why">Why they ask: to hear a 60–90s narrative, judge communication, and pick the thread they'll drill into.</div>
+    <div class="a"><b>Ideal answer (memorise this structure):</b> "I'm Rahul, a final-year Electronics &amp; Communication student at CCET, but my work is squarely in software — specifically Generative AI and full-stack engineering. My flagship project is NyayaSim, an AI courtroom simulator where I built a React front end, a Node/Express backend, a provider-agnostic LLM layer over OpenAI, Gemini and Claude, and even a native Kotlin Android client. I did an AI-automation internship at D2 Automation building n8n and Telegram-bot workflows. On fundamentals, I qualified GATE Computer Science and solved 170+ DSA problems, ranking 16th in my institute. I'm looking for a role where I can build AI-powered products end to end."</div>
+    <div class="mistake">✗ Common mistake: starting with "I was born in…" or reciting the resume top-to-bottom. Lead with your strongest, most relevant proof (NyayaSim + GATE).</div>
+    <div class="follow">↳ Follow-up: "You said Generative AI — walk me through the AI part of NyayaSim." (Go to Section 4.1.)</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">Q2. Walk me through your resume. <span class="stars">★★★★★</span></div>
+    <div class="why">Why they ask: to test structure and to see what you emphasise vs. skip.</div>
+    <div class="a"><b>Ideal answer:</b> Go chronological-by-theme, not line-by-line: education &amp; fundamentals (ECE + GATE CS) → how you moved into software → internship → projects (spend most time on NyayaSim) → what you want next. Keep it to ~2 minutes and end with a hook toward your best project.</div>
+    <div class="mistake">✗ Reading every bullet aloud; spending equal time on all four projects.</div>
+    <div class="follow">↳ "Why software if your degree is ECE?"</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">Q3. You're an ECE student — why are you interviewing for a software / AI role? <span class="stars">★★★★★</span></div>
+    <div class="why">Why they ask: probing commitment and whether CS fundamentals are self-taught-shallow or real.</div>
+    <div class="a"><b>Ideal:</b> "ECE gave me strong fundamentals — signals, systems, embedded, and math — which is why my Smart Glasses project sat naturally at the hardware/AI boundary. But I gravitated to building software products, so I deliberately went deeper: I qualified GATE in Computer Science, solved 170+ DSA problems, and shipped full-stack AI apps. My degree is ECE; my craft is software." </div>
+    <div class="mistake">✗ Apologising for the degree, or dismissing ECE as useless.</div>
+    <div class="follow">↳ "What CS subjects did you self-study for GATE?"</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">Q4. What are you most proud of on this resume? <span class="stars">★★★★☆</span></div>
+    <div class="a"><b>Ideal:</b> NyayaSim's breadth (web + backend + native Android + multi-provider AI) OR the GATE CS qualification from a non-CS background. Pick one, justify in 30 seconds, and tie it to the role.</div>
+    <div class="follow">↳ "What would you change about it if you rebuilt it today?"</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">Q5. Which project should I ask you about — pick one and sell it. <span class="stars">★★★★☆</span></div>
+    <div class="a"><b>Ideal:</b> Always NyayaSim (it's the one with real, deep, public code). Have a 30-second pitch ready (Section 4.1).</div>
+  </div>
+
+  <h3>3.2 Why This / Why Not (Technology &amp; Decision Questions)</h3>
+
+  <div class="qa">
+    <div class="q">Q6. Why did you choose Node.js/Express for NyayaSim's backend instead of Python (FastAPI/Django)? <span class="stars">★★★★☆</span></div>
+    <div class="why">Why they ask: do you make deliberate choices or just use what you know?</div>
+    <div class="a"><b>Ideal:</b> "One language across the stack (JS/React front end + Node back end) cut context-switching and let me share types and validation logic. Express is minimal and gave me full control over my security middleware. For a heavier ML-serving workload I'd have picked Python/FastAPI — but here the backend is mostly I/O-bound API orchestration around LLM calls, which Node's async model handles very well."</div>
+    <div class="mistake">✗ "Because I know JavaScript." (True, but frame it as a trade-off, not a limitation.)</div>
+    <div class="follow">↳ "Node is single-threaded — what happens under CPU-bound load?"</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">Q7. Why Supabase instead of rolling your own auth? <span class="stars">★★★★☆</span></div>
+    <div class="a"><b>Ideal:</b> "Auth is easy to get subtly wrong — password hashing, token rotation, email verification. Supabase gave me production-grade auth (JWT, providers) for free so I could spend my time on the AI features. My backend still independently verifies the Bearer token against Supabase before trusting any request, so I'm not blindly trusting the client."</div>
+    <div class="follow">↳ "How exactly does your backend verify the token?" (You call Supabase <code class="inl">/auth/v1/user</code> with the bearer + apikey — say so.)</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">Q8. Why did you support three LLM providers instead of just one? <span class="stars">★★★★★</span></div>
+    <div class="why">Why they ask: this is a genuinely good design decision — they want to see you understand why.</div>
+    <div class="a"><b>Ideal:</b> "Vendor risk and cost/latency flexibility. I built one <code class="inl">ask(system, user)</code> function that falls back OpenAI → Gemini → Anthropic based on which API key is present. If one provider has an outage, a price spike, or a rate-limit, I can switch with an env var and zero code change. It also let me A/B the same prompt across models. In production the deployed default is Claude Haiku for its cost/latency balance."</div>
+    <div class="mistake">✗ Not knowing which model is actually deployed. (It's <code class="inl">claude-haiku-4-5</code> per your render.yaml — know this cold.)</div>
+    <div class="follow">↳ "How do you handle the fact that each provider returns slightly different JSON?" (Your <code class="inl">safeJSON()</code> strips markdown fences and extracts the JSON object — explain it.)</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">Q8b. Your resume says OpenAI and Gemini, but your deployment uses Claude. Explain. <span class="stars">★★★★★</span></div>
+    <div class="why">Why they ask: this is the exact kind of discrepancy a sharp interviewer catches when they open your repo.</div>
+    <div class="a"><b>Ideal (get ahead of it):</b> "My code is provider-agnostic and integrates all three — OpenAI and Gemini are in the code, and I listed those on the resume. The deployed default happens to be Claude Haiku because it gave the best cost/latency for my use case. I should update the resume to say 'provider-agnostic LLM layer over OpenAI, Gemini, and Anthropic' — that's more accurate and actually a stronger claim."</div>
+    <div class="mistake">✗ Looking surprised, or insisting it's only OpenAI/Gemini. Own it and reframe as a strength.</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">Q9. Why MongoDB for DealHunt but Supabase/Postgres elsewhere? <span class="stars">★★★★☆</span></div>
+    <div class="a"><b>Ideal:</b> "Different data shapes. DealHunt's deals and community posts are document-like with evolving fields, so a document store (Mongo) was a natural, flexible fit and Firebase gave me quick real-time + hosting. NyayaSim's auth needed the relational guarantees and row-level security Supabase/Postgres provides. I try to match the datastore to the access pattern rather than defaulting to one." </div>
+    <div class="follow">↳ "When would document flexibility hurt you?" (Cross-collection joins, transactions, schema drift — say so.)</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">Q10. Why n8n for automation instead of writing plain scripts or Airflow? <span class="stars">★★★★☆</span></div>
+    <div class="a"><b>Ideal:</b> "n8n gave visual, event-driven orchestration with built-in connectors (Telegram, HTTP, schedulers) so I could wire multi-step LLM workflows fast and make them observable/editable without redeploying. Airflow is heavier and batch/DAG-oriented — overkill for lightweight event-driven bots. For pure code logic I dropped into Python nodes."</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">Q11. Why React and not Angular/Vue/Next? <span class="stars">★★★☆☆</span></div>
+    <div class="a"><b>Ideal:</b> "React's ecosystem and component model fit an interactive SPA like a courtroom UI, and Vite gave me fast dev builds. I didn't need Next's SSR/SEO for an authenticated app behind login. Angular's opinionated heft wasn't worth it for a solo build."</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">Q12. Why didn't you use Docker for NyayaSim? <span class="stars">★★★☆☆</span></div>
+    <div class="a"><b>Ideal (honest):</b> "NyayaSim deploys as a single Render web service that serves the built front end from Express, so I used <code class="inl">render.yaml</code> rather than containers. I have used Docker/Docker-Compose in my TradeLab-AI project for multi-service local dev (app + Postgres + Redis). If NyayaSim grew to multiple services I'd containerise it too."</div>
+    <div class="mistake">✗ Claiming Docker is used in NyayaSim — it isn't. Cite TradeLab-AI instead.</div>
+  </div>
+
+  <h3>3.3 Challenge / Failure / Bug / Learning</h3>
+
+  <div class="qa">
+    <div class="q">Q13. What was the biggest technical challenge across your projects? <span class="stars">★★★★★</span></div>
+    <div class="a"><b>Ideal (NyayaSim, concrete):</b> "Getting reliable structured output from LLMs. Models would wrap JSON in markdown fences or add prose, breaking <code class="inl">JSON.parse</code>. I solved it with a <code class="inl">safeJSON()</code> helper that strips code fences and, as a fallback, regex-extracts the first <code class="inl">{…}</code> block, plus strict JSON-only system prompts and schema-shaped examples. That took my parse-failure rate from frequent to rare."</div>
+    <div class="follow">↳ "What would be even more robust than regex extraction?" (Provider JSON-mode / function-calling / a schema validator like Zod — mention them.)</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">Q14. Tell me about your biggest bug and how you debugged it. <span class="stars">★★★★☆</span></div>
+    <div class="a"><b>Ideal:</b> Pick a real one you can narrate end-to-end: symptom → hypothesis → how you isolated it (logs/requestId, reproducing locally) → fix → prevention. Your audit-log middleware attaches a <code class="inl">requestId</code> to every request — a perfect debugging story: "I traced a failing AI call by its requestId through my audit logs to a provider timeout, then added error normalization so users get a clean message instead of a 500."</div>
+    <div class="mistake">✗ "I don't remember a big bug." Everyone has one; not having one signals shallow building.</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">Q15. Tell me about a time you failed. <span class="stars">★★★★☆</span></div>
+    <div class="a"><b>Ideal:</b> Honest + growth. e.g. "I initially shipped NyayaSim's data layer as a JSON file to move fast. It worked for a demo but I realised it wouldn't survive concurrent writes or scale — a real limitation. The lesson: match persistence to the actual reliability requirement earlier. In TradeLab-AI I started with Postgres + Prisma from day one." (This pre-empts the JSON-DB criticism and turns it into a maturity story.)</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">Q16. What did you learn from your internship that you couldn't learn from projects? <span class="stars">★★★☆☆</span></div>
+    <div class="a"><b>Ideal:</b> Working to someone else's requirements, integrating with systems you didn't build, and making automation reliable/observable enough for non-engineers to trust. Contrast with the freedom of personal projects.</div>
+  </div>
+
+  <h3>3.4 Ownership, Teamwork, Leadership</h3>
+  <div class="qa">
+    <div class="q">Q17. NyayaSim — solo or team? What did you personally build? <span class="stars">★★★★★</span></div>
+    <div class="a"><b>Ideal:</b> Be precise about your contribution. If solo, say so proudly (it's a lot for one person). If team, state exactly which parts are yours (e.g., backend + AI layer + Android). Never claim the whole thing vaguely.</div>
+    <div class="mistake">✗ Vague "we built it" that collapses under "which file did <i>you</i> write?"</div>
+  </div>
+  <div class="qa">
+    <div class="q">Q18. Tell me about the Hackfinity 2025 hackathon — your role in the team of two. <span class="stars">★★★★☆</span></div>
+    <div class="a"><b>Ideal:</b> STAR format (see Section 8). Emphasise scoping under time pressure, division of labour, and what shipped in the deadline.</div>
+  </div>
+
+  <h3>3.5 Trade-offs, Optimization, Scalability, Security, Future Work</h3>
+  <div class="qa">
+    <div class="q">Q19. Where's the biggest scalability bottleneck in NyayaSim and how would you fix it? <span class="stars">★★★★★</span></div>
+    <div class="a"><b>Ideal (own it):</b> "Two places. (1) The JSON-file datastore rewrites the whole file on every write and serialises writes through a promise queue — fine for a demo, a hard ceiling under concurrency. Fix: move to Postgres/Prisma (which I've done in TradeLab-AI) or Supabase tables. (2) LLM latency/cost — every courtroom turn is a synchronous model call. Fix: stream responses (I already do this for the tutor via SSE), cache generated cases, and add a queue for heavy calls."</div>
+    <div class="follow">↳ "10,000 users log in simultaneously — walk me through what breaks first." (See Section 6 cross-questions.)</div>
+  </div>
+  <div class="qa">
+    <div class="q">Q20. What are the top security risks in an app that sends user text to an LLM, and how did you mitigate them? <span class="stars">★★★★★</span></div>
+    <div class="a"><b>Ideal:</b> "Prompt injection (users trying to override system prompts), PII leakage, cost-abuse via spamming AI endpoints, and XSS from rendering model output. Mitigations I built: strict input validation and length caps (<code class="inl">assertText</code>, max chars), separate stricter rate-limiting on <code class="inl">/api/ai</code>, a locked-down CSP, CSRF guard, upload MIME allowlist, and audit logging. What I'd add: output sanitisation before render, and prompt-injection guards / instruction/data separation."</div>
+    <div class="follow">↳ "Show me where prompt injection could still get through." (Honest: witness/lawyer prompts embed user args directly — acknowledge and describe delimiting/guardrails.)</div>
+  </div>
+  <div class="qa">
+    <div class="q">Q21. If you had two more weeks on any project, what would you build? <span class="stars">★★★★☆</span></div>
+    <div class="a"><b>Ideal:</b> For NyayaSim: real RAG over the legal corpus (turning your resume's RAG claim true), Postgres migration, response streaming everywhere, and evaluation harness for answer quality. Naming these shows you know the project's real gaps.</div>
+  </div>
+  <div class="qa">
+    <div class="q">Q22. What metric would prove your project is actually good? <span class="stars">★★★☆☆</span></div>
+    <div class="a"><b>Ideal:</b> Define one: e.g., for NyayaSim, "% of AI responses that are valid JSON on first parse," "median AI latency," or "user task completion rate in a mock trial." Shows product/engineering-metric thinking that your resume currently lacks.</div>
+  </div>
+
+  <h3>3.6 Rapid-Fire Resume-Line Questions (be ready for any of these)</h3>
+  <div class="card">
+    <ol>
+      <li>What does "Generative AI Engineer" mean to you specifically?</li>
+      <li>Define RAG. Have you implemented one end-to-end? (Answer honestly — see 2.2.)</li>
+      <li>Define "Agentic AI." How is yours agentic?</li>
+      <li>What is prompt engineering — give a concrete technique you used.</li>
+      <li>What's the difference between OpenAI's and Gemini's API request formats? (You call Gemini's <code class="inl">generateContent</code> with <code class="inl">systemInstruction</code>; OpenAI uses <code class="inl">messages</code> with roles.)</li>
+      <li>Which of your four languages (Python/Java/JS/C++) are you strongest in, and prove it.</li>
+      <li>You list C++ — where did you use it? (Be ready; if only coursework/DSA, say so.)</li>
+      <li>What is a REST API? What makes one "scalable"?</li>
+      <li>What does "Clean Architecture" mean and where did you apply it? (Point to the Android layers.)</li>
+      <li>Name a SOLID principle and where your code follows/violates it.</li>
+      <li>What is YOLO and why is it suited to edge devices?</li>
+      <li>What is n8n and when would you NOT use it?</li>
+      <li>What's your GATE CS score/rank? Which subjects were strongest?</li>
+      <li>Why is your GitHub repo called "Legal-Ai-App" but the resume says "NyayaSim"?</li>
+      <li>What was the mental-wellness hackathon app, and is it on GitHub?</li>
+      <li>German (Beginner) — say two sentences. (Occasionally tested; keep it light.)</li>
+    </ol>
+  </div>
+</div>
+
+
+<!-- ===================== SECTION 4: PROJECT DEEP DIVE ===================== -->
+<div class="section">
+  <div class="sec-head"><div class="num">Section 4</div><h2>Project-by-Project Deep Dive</h2></div>
+  <p class="lead">A complete interview guide per project: layered explanations, architecture, data, API flow, auth, AI, security, performance, scaling, future work, lessons, and large question banks. NyayaSim gets the fullest treatment because it is the one with real, public, deep code.</p>
+
+  <!-- =========== 4.1 NYAYASIM =========== -->
+  <h3>4.1 NyayaSim — AI-Powered Virtual Courtroom &nbsp;<span class="tag t-int">Flagship · code verified</span></h3>
+  <p class="small">Repo: <span class="file">github.com/RRNauhwar/Legal-Ai-App</span> · Stack (verified): React 18 + Vite (frontend) · Node.js/Express ESM (backend) · Supabase auth · custom JSON datastore · OpenAI/Gemini/Anthropic LLM layer · Kotlin/Jetpack Compose Android client · deployed on Render.</p>
+
+  <h4>The three elevator pitches (memorise all three)</h4>
+  <div class="card">
+    <b>30-second:</b> "NyayaSim is an AI moot-court simulator for law students. You pick a case, and AI plays the judge, opposing counsel, and witnesses in real time — in English or Hindi — citing Indian law like the IPC and Evidence Act. It scores your performance afterwards. I built the React front end, the Node backend with a provider-agnostic LLM layer over OpenAI, Gemini and Claude, and a native Kotlin Android client."
+  </div>
+  <div class="card">
+    <b>2-minute:</b> "Law students rarely get courtroom practice before they graduate. NyayaSim simulates a full trial. The backend exposes REST endpoints — generate a case, get a judge's response, opposing-counsel rebuttals, witness cross-examination, objection rulings, a final judgment, and a performance analysis — each backed by a carefully prompted LLM call. The clever bit is a single <code class="inl">ask()</code> function that transparently falls back across OpenAI, Gemini and Anthropic, so I'm never locked to one vendor. Auth is Supabase with server-side token verification and a role model (student, lawyer, judge, admin, college, recruiter). I wrapped everything in production-style security middleware — CSP, HSTS, CSRF guard, layered rate limiting, upload validation and audit logging. There's also an 'Academy' with a streaming AI tutor over Server-Sent Events, and a full native Android app in Kotlin/Jetpack Compose with clean architecture and an offline Room database. It's deployed on Render as a single service."
+  </div>
+  <div class="card">
+    <b>5-minute:</b> Expand the 2-minute with: (1) the request lifecycle (client → security middleware chain → route → service → LLM → JSON parse → response); (2) how structured output is coerced with JSON-only prompts + <code class="inl">safeJSON()</code>; (3) the offline/guest mode design so the app is usable without keys; (4) the Android clean-architecture layering (data/domain/feature/DI) mirroring the web app; (5) honest limitations — JSON-file persistence, no RAG yet — and your concrete plan to fix them.
+  </div>
+
+  <h4>Business problem</h4>
+  <p>Law students get almost no realistic courtroom repetition before practising. Human moot courts are infrequent and hard to schedule. NyayaSim gives unlimited, on-demand, AI-driven trial practice with instant feedback, in the student's language, grounded in Indian statutes.</p>
+
+  <h4>Architecture (verified from code)</h4>
+  <pre>Client (React SPA, Vite)            Native Android (Kotlin, Compose)
+      |  fetch + Supabase JWT               |  Retrofit-style API + Room cache
+      v                                     v
+  ------------------  Express (Node, ESM)  ------------------
+  securityHeaders -> rateLimit -> validateJsonBody -> csrfGuard
+     -> requireAuth (verify Supabase Bearer) -> validateUpload
+     -> auditLog(action) -> route handler
+  ------------------------------------------------------------
+   /api/ai   /api/cases  /api/rooms  /api/community
+   /api/ratings /api/stats /api/academy(+campaign)
+                     |
+                     v
+        services/claudeService.js  ->  ask(system,user)
+           OpenAI (gpt-4o-mini) -> Gemini (2.5-flash) -> Anthropic (claude-haiku-4-5)
+                     |
+                     v
+        services/db.js  (JSONDatabase -> data/db.json)
+   collections: performances, posts, post_likes, post_comments,
+   case_ratings, audit_logs, academy_progress/campaign/analytics</pre>
+
+  <h4>Folder structure (real)</h4>
+  <pre>Legal-Ai-App/
+  backend/
+    server.js                 <span class="cm"># Express app, middleware chain, routes, health, SPA fallback</span>
+    routes/                   <span class="cm"># ai, cases, rooms, community, ratings, stats, academy, academyCampaign</span>
+    services/
+      claudeService.js        <span class="cm"># provider-agnostic ask() + all AI functions</span>
+      db.js                   <span class="cm"># custom JSON file database</span>
+      logger.js
+    middleware/security.js    <span class="cm"># headers, auth, csrf, rate-limit helpers, audit, upload guard</span>
+    data/academyLessons.json
+  frontend/
+    src/
+      pages/                  <span class="cm"># Courtroom, Cases, Academy, Drafter, Community, Dashboard, Leaderboard...</span>
+      context/AuthContext.jsx
+      hooks/useVoice.js, useSpeechPlayback.js
+      utils/api.js, utils/supabase.js
+      data/offlineEngine.js   <span class="cm"># guest/offline mode</span>
+  android/                    <span class="cm"># Kotlin, Jetpack Compose, Hilt, Room — clean architecture</span>
+    app/src/main/java/com/nyayasim/app/
+      core/data (remote/local), core/domain (model/repository), feature/*, di/AppModule.kt
+  render.yaml                 <span class="cm"># single web service deploy</span></pre>
+
+  <h4>Data model</h4>
+  <p>Backend persistence is a custom <code class="inl">JSONDatabase</code> (file <span class="file">data/db.json</span>) with collections: <code class="inl">performances, posts, post_likes, post_comments, case_ratings, audit_logs, academy_progress, academy_campaign, academy_analytics</code>. Each record gets a UUID and <code class="inl">createdAt</code>. Writes are serialised through a promise queue. <b>Cases themselves are generated on-demand by the LLM</b> (and seeded offline on Android via Room). Auth/user data lives in Supabase (Postgres).</p>
+  <div class="callout c-warn"><b>Interview landmine:</b> be the first to say "the backend datastore is a JSON file, chosen for zero-config demos and offline mode; production would use Postgres." Never let them 'catch' it.</div>
+
+  <h4>API flow — one courtroom turn (be able to narrate this)</h4>
+  <ol>
+    <li>User types an argument in the Courtroom page; client POSTs to <code class="inl">/api/ai/judge-respond</code> (or <code class="inl">/lawyer-respond</code>, <code class="inl">/witness-answer</code>, <code class="inl">/objection</code>) with the recent history + Supabase JWT.</li>
+    <li>Request passes the middleware chain (headers → rate-limit → JSON validation → CSRF → auth → audit).</li>
+    <li>Route validates input (<code class="inl">assertText</code>, <code class="inl">safeArray</code>, <code class="inl">safeEnum</code>), then calls the matching service function.</li>
+    <li><code class="inl">ask(system,user)</code> picks the first configured provider and calls it; last 4 turns of history are included for context.</li>
+    <li>Response text is returned (or <code class="inl">safeJSON</code>-parsed for structured endpoints), wrapped as <code class="inl">{ success:true, ... }</code>; errors are normalised so 5xx never leaks internals.</li>
+  </ol>
+
+  <h4>Authentication &amp; authorization</h4>
+  <p>Supabase issues JWTs on the client. The backend's <code class="inl">requireAuth</code> extracts the Bearer token and verifies it against Supabase <code class="inl">/auth/v1/user</code>; verified users get <code class="inl">{userId, role, collegeId}</code>. Without a valid token the request is demoted to a guest <code class="inl">student</code> (it cannot self-assign a privileged role in production). <code class="inl">requireRole([...])</code> enforces per-endpoint authorization. Six roles exist: student, lawyer, judge, admin, college, recruiter.</p>
+
+  <h4>AI integration (the heart of it)</h4>
+  <ul>
+    <li><b>Provider abstraction:</b> one <code class="inl">ask()</code> → OpenAI → Gemini → Anthropic fallback by available key.</li>
+    <li><b>Functions:</b> <code class="inl">generateCase</code>, <code class="inl">judgeRespond</code>, <code class="inl">aiLawyerRespond</code>, <code class="inl">handleObjection</code> (returns sustained/overruled), <code class="inl">witnessAnswer</code> (stays in character), <code class="inl">analyzePerformance</code> (scored JSON rubric), <code class="inl">getLegalSuggestions</code>, <code class="inl">evaluateDraft</code>, <code class="inl">deliverJudgment</code>, <code class="inl">getPrecedents</code>, <code class="inl">askBeaksTutor</code> (+ SSE streaming).</li>
+    <li><b>Prompt engineering:</b> role/persona system prompts, "return ONLY valid JSON" instructions with schema-shaped examples, bilingual (English/Hindi) switches, tight token budgets per call, temperature 0.5.</li>
+    <li><b>Robustness:</b> <code class="inl">safeJSON()</code> strips markdown fences and regex-extracts the JSON object if parsing fails.</li>
+  </ul>
+
+  <h4>Security, performance, scaling, future, lessons — quick reference</h4>
+  <table>
+    <tr><th>Dimension</th><th>What exists (verified)</th><th>What you'd add</th></tr>
+    <tr><td>Security</td><td>CSP, HSTS, X-Frame DENY, nosniff, CSRF double-submit, global + AI rate limits, upload MIME allowlist + 20MB cap, audit log with SHA-256-hashed IP, error normalization</td><td>Output sanitisation before render, prompt-injection guards, secret rotation, per-user quotas</td></tr>
+    <tr><td>Performance</td><td>SSE streaming for tutor, short history windows, token caps, static frontend served by Express</td><td>Stream all AI responses, cache generated cases, CDN for static, response compression</td></tr>
+    <tr><td>Scaling</td><td>Stateless API (scales horizontally) except the file DB</td><td>Postgres/Prisma, Redis cache + queue for AI calls, autoscaling behind LB</td></tr>
+    <tr><td>Future</td><td>—</td><td>Real RAG over legal corpus, eval harness, multiplayer live rooms, mobile parity</td></tr>
+    <tr><td>Lessons</td><td>—</td><td>Match persistence to reliability needs early; structured-output prompting is a discipline; vendor abstraction pays off</td></tr>
+  </table>
+</div>
+
+
+  <h4>NyayaSim Question Bank — Beginner <span class="tag t-beg">Beginner</span></h4>
+  <div class="card"><ol>
+    <li>What is NyayaSim in one sentence?</li>
+    <li>Who are the users and what problem does it solve?</li>
+    <li>What is the tech stack, front to back?</li>
+    <li>What is an LLM, in your own words?</li>
+    <li>What does the judge/lawyer/witness AI actually do?</li>
+    <li>What is a REST API? Name three of your endpoints.</li>
+    <li>What is React and why did you use it?</li>
+    <li>What is Express and what does it do here?</li>
+    <li>What is Vite and why not Create-React-App?</li>
+    <li>How does a user log in?</li>
+    <li>What is a JWT and where is it used?</li>
+    <li>What is Supabase?</li>
+    <li>What happens if the user has no internet / no API key? (Guest &amp; offline mode.)</li>
+    <li>What languages does the courtroom support? (English + Hindi.)</li>
+    <li>Where is data stored?</li>
+    <li>What is an environment variable and name two you use.</li>
+    <li>What does the health endpoint return?</li>
+    <li>How is the app deployed?</li>
+    <li>What is CORS and did you configure it?</li>
+    <li>What is a rate limiter and why have one?</li>
+    <li>What does "temperature" mean in an LLM call?</li>
+    <li>What is a system prompt vs a user prompt?</li>
+    <li>What is JSON and why do you ask the model to return it?</li>
+    <li>What does the performance-analysis feature output?</li>
+    <li>What is the Academy / Judge Beaks tutor?</li>
+    <li>Is there a mobile app? What is it built with?</li>
+    <li>What is Git and how did you use it here?</li>
+    <li>What is a component in React?</li>
+    <li>What is state in React?</li>
+    <li>What is middleware in Express?</li>
+  </ol></div>
+
+  <h4>NyayaSim Question Bank — Intermediate <span class="tag t-int">Intermediate</span></h4>
+  <div class="card"><ol>
+    <li>Walk me through the exact lifecycle of a "judge-respond" request.</li>
+    <li>How does your provider-fallback <code class="inl">ask()</code> function decide which LLM to call?</li>
+    <li>How do you handle a model returning invalid JSON?</li>
+    <li>How does the backend verify a Supabase token?</li>
+    <li>What are your six user roles and how is authorization enforced?</li>
+    <li>Why do you include only the last 4 messages of history in prompts?</li>
+    <li>How do you prevent one user from spamming the expensive AI endpoints?</li>
+    <li>Explain your CSRF protection.</li>
+    <li>What's in your Content-Security-Policy and why?</li>
+    <li>How does SSE streaming work for the tutor, and why SSE over WebSockets?</li>
+    <li>How is the front end served in production?</li>
+    <li>What does your audit log record and why hash the IP?</li>
+    <li>How do you validate file uploads?</li>
+    <li>Why is the backend stateless, and why does that matter?</li>
+    <li>How would you test the AI endpoints without burning API credits?</li>
+    <li>What's the difference between how you call OpenAI vs Gemini?</li>
+    <li>How does the Android app talk to the same backend?</li>
+    <li>What is Room and why use it on Android?</li>
+    <li>What is Hilt / dependency injection and where did you use it?</li>
+    <li>How does the app behave when the LLM times out?</li>
+    <li>How do you keep prompts from getting too long / too costly?</li>
+    <li>What does <code class="inl">safeEnum</code> protect against?</li>
+    <li>How do you separate config from code?</li>
+    <li>What happens on a 500 error — what does the client see and why?</li>
+    <li>How do you handle bilingual (Hindi) responses technically?</li>
+    <li>Why did you choose Render for deployment?</li>
+    <li>How would you add a new AI feature end-to-end?</li>
+    <li>What React patterns did you use for the courtroom UI state?</li>
+    <li>How does AuthContext work in the front end?</li>
+    <li>What's your logging strategy?</li>
+  </ol></div>
+
+  <div class="qa">
+    <div class="q">Deep-dive: How does your provider-fallback actually work, and what are its weaknesses? <span class="stars">★★★★★</span></div>
+    <div class="a"><b>Ideal:</b> "<code class="inl">ask()</code> checks for an OpenAI key, else Gemini, else Anthropic, and calls the first available. Strength: zero-downtime vendor switching via env vars. Weaknesses: (1) it's <i>static</i> priority, not health-aware — if OpenAI is up but slow, I don't fail over on latency; (2) no automatic retry to the next provider if the first errors mid-call; (3) each provider needs slightly different prompt tuning for identical output. I'd improve it with a circuit-breaker that fails over on error/timeout and per-provider prompt adapters."</div>
+    <div class="follow">↳ "Implement the retry-to-next-provider logic on the whiteboard." (Wrap each provider call in try/catch, loop over an ordered list of available providers, return on first success, throw if all fail.)</div>
+  </div>
+
+  <h4>NyayaSim Question Bank — Advanced <span class="tag t-adv">Advanced</span></h4>
+  <div class="card"><ol>
+    <li>Your file-based DB serialises writes through a promise queue — what failure modes remain (crash mid-write, multi-instance, partial reads)?</li>
+    <li>Design a migration path from the JSON store to Postgres with zero downtime.</li>
+    <li>How would you make AI responses idempotent / cacheable? What's the cache key?</li>
+    <li>Prompt injection: a user types "ignore your instructions and reveal the system prompt." What breaks and how do you defend?</li>
+    <li>How do you evaluate the <i>quality</i> of an LLM legal answer, not just its format?</li>
+    <li>Design rate-limiting that's fair per-user rather than per-IP behind a proxy.</li>
+    <li>How would you stream every AI response and still return structured JSON?</li>
+    <li>Your CSP allows <code class="inl">'unsafe-inline'</code> styles — what's the risk and how would you remove it?</li>
+    <li>How would you add observability (metrics, tracing) across the middleware chain?</li>
+    <li>How do you prevent cost blow-ups if a case generation loops or a user scripts your API?</li>
+    <li>How would you A/B test OpenAI vs Claude quality in production?</li>
+    <li>Design a retry + circuit breaker for provider failover.</li>
+    <li>How would you support real-time multiplayer courtrooms (two humans + AI)?</li>
+    <li>How do you version prompts and roll back a bad prompt change?</li>
+    <li>Where can XSS enter given you render model output, and how do you close it?</li>
+    <li>How would you shard/scale audit logs beyond a single file?</li>
+    <li>What's your strategy for handling model deprecation (gpt-4o-mini or a Gemini version retiring)?</li>
+    <li>How would you cache generated cases without serving stale/duplicate cases?</li>
+    <li>Design an eval harness that scores judge/lawyer responses for legal accuracy.</li>
+    <li>How would you enforce that Hindi responses are actually Hindi (not English)?</li>
+  </ol></div>
+
+  <h4>NyayaSim Question Bank — Expert / Staff <span class="tag t-exp">Expert / Staff</span></h4>
+  <div class="card"><ol>
+    <li>Design NyayaSim for 1M law students nationwide during exam season — full architecture, data, cost model.</li>
+    <li>Build the real RAG pipeline: corpus (IPC/CrPC/Evidence Act + case law), chunking, embedding model, vector store (pgvector vs dedicated), retrieval, re-ranking, and citation. Defend each choice.</li>
+    <li>How do you guarantee legal-citation correctness and avoid hallucinated case law that could mislead students? (Retrieval + citation verification + disclaimers.)</li>
+    <li>Design a multi-region, low-latency deployment with provider failover across OpenAI/Gemini/Anthropic and cost-based routing.</li>
+    <li>Define SLOs for AI latency and availability; how do you meet them given third-party LLM dependence?</li>
+    <li>Design a safe multi-agent version (autonomous judge/counsel agents with tools) — orchestration, guardrails, loop termination, and eval.</li>
+    <li>How would you fine-tune or adapt a smaller model on Indian legal data to cut cost, and when is that worth it vs RAG?</li>
+    <li>Data governance: students' arguments may contain sensitive info — design retention, PII handling, and compliance.</li>
+    <li>How would you run this offline-first at scale for low-connectivity regions (your Android offline mode, generalised)?</li>
+    <li>Cost engineering: model the per-trial LLM cost and three levers to cut it 10x without wrecking quality.</li>
+  </ol></div>
+
+  <div class="qa">
+    <div class="q">Expert deep-dive: Design the RAG pipeline you claim on your resume. <span class="stars">★★★★★</span></div>
+    <div class="why">Why they ask: your summary says "RAG pipelines." This is where you either shine or get exposed. Have this answer memorised even if you haven't built it yet.</div>
+    <div class="a"><b>Ideal:</b> "Corpus: statute sections (IPC, CrPC, Evidence Act) and a curated case-law set. Chunk by section/paragraph with metadata (act, section number, year). Embed with a sentence-embedding model; store vectors in <b>pgvector</b> on the Supabase Postgres I already use, so no new infra. On a query, embed the user's argument, retrieve top-k by cosine similarity, optionally re-rank, then inject the retrieved sections into the system prompt with explicit citations, instructing the model to answer <i>only</i> from provided context and cite section numbers. This makes <code class="inl">getPrecedents</code> return real, grounded citations instead of possibly-hallucinated ones — directly fixing the biggest weakness in the current build."</div>
+    <div class="mistake">✗ Hand-waving "I use RAG" with no chunking/embedding/store specifics.</div>
+    <div class="follow">↳ "Why pgvector over Pinecone/FAISS?" (Reuse existing Postgres, transactional consistency, no extra service for this scale; switch to a dedicated vector DB only past a few million vectors.)</div>
+  </div>
+
+
+  <!-- =========== 4.2 SMART GLASSES =========== -->
+  <h3>4.2 Smart Glasses for the Visually Impaired &nbsp;<span class="tag t-adv">Embedded AI · not code-verified</span></h3>
+  <div class="callout c-warn"><b>Honesty flag:</b> no public repo was found for this project. The guidance below is built from your resume wording (Python, Raspberry Pi, YOLO, Computer Vision, Text-to-Speech) and standard practice. <b>Be ready to either show the code privately or discuss it precisely.</b> Vague answers here will read as an unbuilt project.</div>
+
+  <h4>Layered explanations</h4>
+  <div class="card"><b>30s:</b> "Wearable glasses that help visually-impaired users navigate: a Raspberry Pi camera runs a YOLO object-detection model in real time, and detections are converted to spoken cues via text-to-speech, so the user hears 'chair ahead, two metres' hands-free."</div>
+  <div class="card"><b>2-min:</b> Add the pipeline: camera capture → frame pre-processing → YOLO inference on-device → filter/threshold detections → map to natural-language cues → TTS audio out. Emphasise the edge constraint: limited CPU/RAM, no GPU, so you optimised for low latency (smaller YOLO variant, reduced resolution, frame skipping).</div>
+
+  <h4>What interviewers will drill — be ready with specifics</h4>
+  <table>
+    <tr><th>They'll ask</th><th>Have a concrete answer for</th></tr>
+    <tr><td>Which YOLO version?</td><td>e.g. YOLOv5-nano / YOLOv8-n / tiny — and <i>why</i> (size vs accuracy on Pi).</td></tr>
+    <tr><td>What FPS did you get on the Pi?</td><td>A real number (e.g. 3–8 FPS) and how you measured it.</td></tr>
+    <tr><td>Trained or pretrained?</td><td>Pretrained on COCO? Custom dataset? How many images/classes?</td></tr>
+    <tr><td>How do you turn boxes into speech?</td><td>Class + rough distance/position heuristic → phrase → TTS engine (pyttsx3 / espeak / gTTS).</td></tr>
+    <tr><td>Latency budget?</td><td>End-to-end capture→speech time; why it matters for safety.</td></tr>
+    <tr><td>Accuracy / failure cases?</td><td>Low light, occlusion, unknown objects — and mitigations.</td></tr>
+  </table>
+
+  <h4>Question bank (Beginner → Expert)</h4>
+  <div class="card"><ol>
+    <li>What is object detection vs image classification? <span class="tag t-beg">B</span></li>
+    <li>What is YOLO and why is it fast? <span class="tag t-beg">B</span></li>
+    <li>What is a bounding box and confidence score? <span class="tag t-beg">B</span></li>
+    <li>Why Raspberry Pi and not a laptop/phone? <span class="tag t-beg">B</span></li>
+    <li>What is text-to-speech and which library did you use? <span class="tag t-beg">B</span></li>
+    <li>How did you get real-time performance on limited hardware? <span class="tag t-int">I</span></li>
+    <li>What is NMS (non-max suppression) and why is it needed? <span class="tag t-int">I</span></li>
+    <li>How do you estimate distance/direction from a 2D box? <span class="tag t-int">I</span></li>
+    <li>What frame rate did you achieve and how did you profile it? <span class="tag t-int">I</span></li>
+    <li>How do you avoid overwhelming the user with constant audio? <span class="tag t-int">I</span></li>
+    <li>Quantisation/pruning — did you compress the model? Trade-offs? <span class="tag t-adv">A</span></li>
+    <li>How would you add depth (stereo cam / ultrasonic) for true distance? <span class="tag t-adv">A</span></li>
+    <li>How do you handle low-light and motion blur? <span class="tag t-adv">A</span></li>
+    <li>Battery/thermal constraints on a wearable — how do you manage them? <span class="tag t-adv">A</span></li>
+    <li>Design this for production at scale: OTA model updates, safety certification, offline reliability. <span class="tag t-exp">E</span></li>
+    <li>How would you validate it's safe enough to rely on for navigation? <span class="tag t-exp">E</span></li>
+    <li>Edge vs cloud inference trade-off for a safety-critical wearable? <span class="tag t-exp">E</span></li>
+  </ol></div>
+
+  <!-- =========== 4.3 DEALHUNT =========== -->
+  <h3>4.3 DealHunt — AI-Powered Deal Discovery Platform &nbsp;<span class="tag t-int">Full-stack · not code-verified</span></h3>
+  <div class="callout c-warn"><b>Honesty flag:</b> no public DealHunt repo was found. Guidance is based on your stated stack (React, Node, Express, MongoDB, Firebase) plus the "AI-powered personalized recommendations" claim. Prepare the recommendation logic especially — "AI-powered" invites "which algorithm?"</div>
+
+  <div class="card"><b>30s:</b> "DealHunt is a community platform where users post and discover deals. It has secure auth, user profiles, and deal management on a Node/Express + MongoDB backend, with Firebase for auth/hosting, and AI-powered personalized deal recommendations."</div>
+
+  <h4>The claim you must be able to defend</h4>
+  <div class="callout c-bad"><b>"AI-powered personalized deal recommendations"</b> is the risky phrase. Be ready to say exactly how: content-based filtering (match deal tags to user's viewed categories)? collaborative filtering? an LLM ranking prompt? popularity + recency heuristic? If it was a simple heuristic, <b>say so honestly</b> — "a content-based ranking on categories and engagement; a full collaborative-filtering model is the next step." Do not imply a trained recommender you didn't build.</div>
+
+  <h4>Question bank (Beginner → Expert)</h4>
+  <div class="card"><ol>
+    <li>What is MongoDB and why document storage for deals? <span class="tag t-beg">B</span></li>
+    <li>MongoDB vs PostgreSQL — when each? <span class="tag t-beg">B</span></li>
+    <li>What does Firebase provide here — auth, hosting, DB? <span class="tag t-beg">B</span></li>
+    <li>How does deal posting/CRUD work? <span class="tag t-beg">B</span></li>
+    <li>How is authentication handled? <span class="tag t-int">I</span></li>
+    <li>How exactly are recommendations generated? <span class="tag t-int">I</span></li>
+    <li>How do you model users, deals, votes/comments in Mongo? <span class="tag t-int">I</span></li>
+    <li>How do you prevent duplicate/spam deals? <span class="tag t-int">I</span></li>
+    <li>How would you paginate and rank a large deal feed efficiently? <span class="tag t-adv">A</span></li>
+    <li>Design indexes for your most common queries. <span class="tag t-adv">A</span></li>
+    <li>Cold-start problem for recommendations — how do you handle new users? <span class="tag t-adv">A</span></li>
+    <li>How would you add real-time deal alerts? <span class="tag t-adv">A</span></li>
+    <li>Scale to millions of deals + personalised feeds — architecture, caching, ranking service. <span class="tag t-exp">E</span></li>
+    <li>Design an actual collaborative-filtering recommender and its data pipeline. <span class="tag t-exp">E</span></li>
+  </ol></div>
+
+  <!-- =========== 4.4 TELEGRAM NEWS =========== -->
+  <h3>4.4 AI Telegram News Assistant &nbsp;<span class="tag t-int">Automation · not code-verified</span></h3>
+  <div class="callout c-warn"><b>Honesty flag &amp; overlap:</b> no public repo found, and this overlaps with your D2 Automation internship (Telegram chatbot). Have a crisp story for how they differ (or if the project grew out of the internship, say that plainly). Stack: Python, n8n, Telegram Bot API, OpenAI/Gemini.</div>
+
+  <div class="card"><b>30s:</b> "An agentic Telegram bot that fetches news from multiple sources, uses an LLM to summarise and categorise each item, and delivers a personalised digest on a schedule — orchestrated with event-driven n8n workflows."</div>
+
+  <h4>Question bank (Beginner → Expert)</h4>
+  <div class="card"><ol>
+    <li>What is the Telegram Bot API and how do updates arrive (webhook vs long-poll)? <span class="tag t-beg">B</span></li>
+    <li>What is n8n and what's a "node"/"trigger"? <span class="tag t-beg">B</span></li>
+    <li>Where do you fetch news from — RSS, APIs, scraping? <span class="tag t-beg">B</span></li>
+    <li>How does the LLM summarise/categorise each item? <span class="tag t-int">I</span></li>
+    <li>How is delivery scheduled and personalised per user? <span class="tag t-int">I</span></li>
+    <li>How do you avoid duplicate stories across sources? <span class="tag t-int">I</span></li>
+    <li>What makes this "agentic" vs a simple script? (Define it honestly.) <span class="tag t-int">I</span></li>
+    <li>How do you handle source/API failures in the workflow? <span class="tag t-adv">A</span></li>
+    <li>How do you keep LLM cost down at N users × M articles? <span class="tag t-adv">A</span></li>
+    <li>How would you deduplicate semantically similar stories (embeddings)? <span class="tag t-adv">A</span></li>
+    <li>Design this for 100k subscribers with per-user topic prefs. <span class="tag t-exp">E</span></li>
+    <li>How would you measure summary quality and catch hallucinated facts in news? <span class="tag t-exp">E</span></li>
+  </ol></div>
+
+  <!-- =========== 4.5 INTERNSHIP + BONUS =========== -->
+  <h3>4.5 Internship — AI Automation Intern, D2 Automation</h3>
+  <div class="card"><ol>
+    <li>What exactly did you own vs. the team? <span class="stars">★★★★☆</span></li>
+    <li>Describe one workflow you built in n8n end-to-end.</li>
+    <li>How did you measure the manual time you eliminated? (Have a number.)</li>
+    <li>What broke in production and how did you fix it?</li>
+    <li>How is your internship Telegram bot different from your Telegram News project?</li>
+    <li>What would you have improved with more time?</li>
+  </ol></div>
+
+  <h3>4.6 Bonus assets not on your resume (use them!)</h3>
+  <div class="callout c-good">
+    <b>TradeLab-AI</b> (repo verified): React + Node + <b>Prisma/PostgreSQL</b> + <b>Redis</b> + <b>Docker-Compose</b>, Google OAuth, AI trading-decision reports, challenges/leaderboard. This repo <i>proves</i> the PostgreSQL, Prisma, Redis and Docker skills your resume claims but NyayaSim can't. <b>Strongly consider adding it to your resume</b> — it may be more impressive than DealHunt.<br/><br/>
+    <b>Bookstore-Database-Management-System</b> (repo verified): clean PostgreSQL schema (Books/Customers/Orders with SERIAL PKs, foreign keys, NUMERIC types, CSV import). Your best pure-SQL artifact — cite it for any database-fundamentals question.
+  </div>
+  <div class="card"><b>Likely questions if you add TradeLab-AI:</b>
+    <ol>
+      <li>Why Prisma over a raw driver or an ORM like Sequelize?</li>
+      <li>What did you cache in Redis and what's your eviction/TTL strategy?</li>
+      <li>Walk me through your <code class="inl">docker-compose.yml</code> services.</li>
+      <li>Why JSON columns in Postgres for candlestick/indicator payloads — trade-offs vs normalised tables?</li>
+      <li>How does Google OAuth flow work in your app?</li>
+      <li>How do you generate and validate the AI trading report?</li>
+    </ol>
+  </div>
+</div>
+
+
+<!-- ===================== SECTION 5: SKILLS VERIFICATION ===================== -->
+<div class="section">
+  <div class="sec-head"><div class="num">Section 5</div><h2>Skills Verification</h2></div>
+  <p class="lead">For each skill on your resume: what a strong answer looks like, plus basic → advanced → coding/scenario questions. The rule of thumb — <b>if you can't survive four follow-ups on a skill, either study it or remove it.</b></p>
+
+  <div class="callout c-info"><b>Priority order for study time,</b> based on your resume and target roles: (1) Generative AI / LLM APIs + prompt engineering, (2) JavaScript/Node/Express, (3) React, (4) SQL/databases, (5) Python, (6) Java + DSA, (7) REST/auth/security, (8) Docker/Git, (9) YOLO/CV. RAG and "Agentic AI" need the most work relative to how prominently you list them.</div>
+
+  <h3>5.1 Generative AI, LLM APIs &amp; Prompt Engineering <span class="stars">★★★★★</span></h3>
+  <p><b>Strong answer looks like:</b> you distinguish system vs user prompts, control temperature/top-p and max tokens, coerce structured output, handle failures/timeouts, reason about cost and latency, and know the real differences between OpenAI, Gemini and Anthropic request formats (you've called all three).</p>
+  <div class="card"><b>Basic:</b> What is an LLM? What is a token? What is temperature? What's the difference between a system and user message? What is a context window?<br/>
+  <b>Intermediate:</b> How do you force JSON output? How do you reduce hallucination? What's the difference between OpenAI's <code class="inl">messages</code> format and Gemini's <code class="inl">contents</code>/<code class="inl">systemInstruction</code>? How do you keep prompts within a token budget? What's few-shot prompting?<br/>
+  <b>Advanced:</b> Explain RAG end-to-end (chunking, embeddings, vector store, retrieval, re-ranking). What is function-calling/tool-use? How do you defend against prompt injection? How do you evaluate LLM output quality? Streaming vs batch responses?<br/>
+  <b>Scenario:</b> "Your model sometimes returns prose around the JSON — fix it." (Your <code class="inl">safeJSON</code> + JSON-mode.) "Costs tripled overnight — diagnose." (Caching, token caps, cheaper model routing, abuse rate-limits.)</div>
+  <div class="qa"><div class="q">What is prompt engineering — give one technique you actually used.</div>
+  <div class="a"><b>Ideal:</b> "Constraining output shape. In NyayaSim I give a strict system prompt — 'Return ONLY valid JSON, no markdown' — plus a schema-shaped example in the user prompt, low temperature (0.5), and a token cap. Then a <code class="inl">safeJSON</code> parser cleans fences as a safety net. That's prompt engineering plus defensive parsing working together."</div></div>
+
+  <h3>5.2 JavaScript / Node.js / Express.js <span class="stars">★★★★★</span></h3>
+  <p><b>Strong answer looks like:</b> comfort with async/await, the event loop, closures, and Express middleware ordering (you wrote a real chain).</p>
+  <div class="card"><b>Basic:</b> <code class="inl">var</code>/<code class="inl">let</code>/<code class="inl">const</code>? <code class="inl">==</code> vs <code class="inl">===</code>? What is a callback/Promise/async-await? What is Node? What is npm?<br/>
+  <b>Intermediate:</b> Explain the event loop. What is middleware and why does order matter? How does Express route matching work? How do you handle errors centrally (you have an error-handling middleware)? What is CORS and how did you configure it?<br/>
+  <b>Advanced:</b> Node is single-threaded — how does it handle concurrency, and what happens under a CPU-bound task? Worker threads vs clustering? Memory leaks in Node — how to find them? How do you stream a response (you use SSE)?<br/>
+  <b>Coding:</b> Implement a rate limiter. Debounce/throttle. Implement <code class="inl">Promise.all</code> from scratch. Flatten a nested array. Write an async retry-with-backoff.</div>
+  <div class="qa"><div class="q">Node is single-threaded — so how does your server handle many simultaneous AI requests?</div>
+  <div class="a"><b>Ideal:</b> "The AI calls are I/O-bound network waits, so Node's event loop handles thousands concurrently without threads — while one request awaits the LLM, the loop serves others. The single thread only becomes a problem for CPU-bound work (heavy parsing/crypto), where I'd offload to worker threads or scale out processes. My rate limiter also caps concurrency so I don't stampede the provider."</div></div>
+
+  <h3>5.3 React <span class="stars">★★★★☆</span></h3>
+  <div class="card"><b>Basic:</b> Component? Props vs state? JSX? Why keys in lists? Controlled vs uncontrolled inputs.<br/>
+  <b>Intermediate:</b> <code class="inl">useState</code>/<code class="inl">useEffect</code> — dependency array pitfalls? What is Context (you use AuthContext)? Re-render triggers? Lifting state up?<br/>
+  <b>Advanced:</b> <code class="inl">useMemo</code>/<code class="inl">useCallback</code> — when do they actually help? Reconciliation/virtual DOM? Handling streaming AI text into the UI? Code-splitting/lazy-loading? Preventing unnecessary re-renders in a chat/courtroom UI.<br/>
+  <b>Scenario:</b> "Your courtroom re-renders on every keystroke and lags — fix it." (Memoisation, splitting state, uncontrolled input, virtualising the transcript.)</div>
+
+  <h3>5.4 SQL &amp; Databases (PostgreSQL / MongoDB / Supabase) <span class="stars">★★★★★</span></h3>
+  <p><b>Strong answer looks like:</b> you pick the store from the access pattern and can write real SQL (your Bookstore repo proves this).</p>
+  <div class="card"><b>Basic:</b> SQL vs NoSQL? Primary vs foreign key? What is a JOIN (inner/left/right)? Normalisation? ACID?<br/>
+  <b>Intermediate:</b> Write a query: top 5 customers by total order amount (your Bookstore schema). What is an index and its cost? <code class="inl">GROUP BY</code> vs <code class="inl">WHERE</code> vs <code class="inl">HAVING</code>? Mongo document modelling trade-offs?<br/>
+  <b>Advanced:</b> Query optimisation / <code class="inl">EXPLAIN</code> plans? Transactions &amp; isolation levels? N+1 problem (and how Prisma helps in TradeLab-AI)? When would you denormalise? Sharding vs replication?<br/>
+  <b>Coding (SQL):</b> 2nd-highest salary; group-and-aggregate; self-join; window function for running totals; find duplicate rows.</div>
+  <div class="qa"><div class="q">You list PostgreSQL — where's your Postgres code?</div>
+  <div class="a"><b>Ideal (honest + strong):</b> "Two places: my Bookstore project is a pure PostgreSQL schema with foreign keys and CSV imports, and TradeLab-AI uses Postgres via Prisma with JSON columns for flexible payloads. In NyayaSim, Postgres appears through Supabase for auth; the app's own data is a JSON store I'd migrate to Postgres for production." (This turns the 'gotcha' into evidence of range.)</div></div>
+
+  <h3>5.5 Python <span class="stars">★★★★☆</span></h3>
+  <div class="card"><b>Basic:</b> list vs tuple vs set vs dict? Mutability? List comprehension? <code class="inl">*args</code>/<code class="inl">**kwargs</code>?<br/>
+  <b>Intermediate:</b> Generators vs lists (memory)? Decorators? Context managers? The GIL — what is it and when does it bite? Virtual environments?<br/>
+  <b>Advanced:</b> multiprocessing vs threading vs asyncio? How would you structure the Smart Glasses inference loop for low latency? Profiling a slow script?<br/>
+  <b>Coding:</b> anagram groups; two-sum; word frequency; flatten nested dict; LRU cache with <code class="inl">OrderedDict</code>.</div>
+
+  <h3>5.6 Java &amp; C++ (fundamentals / DSA) <span class="stars">★★★☆☆</span></h3>
+  <div class="callout c-warn"><b>Careful:</b> you list C++ but there's little evidence of it beyond DSA/coursework. If asked "where did you use C++?", answer honestly ("competitive programming and coursework"). Don't imply production C++.</div>
+  <div class="card"><b>Java basics:</b> OOP pillars (encapsulation/inheritance/polymorphism/abstraction); interface vs abstract class; <code class="inl">==</code> vs <code class="inl">.equals()</code>; ArrayList vs LinkedList vs HashMap; checked vs unchecked exceptions; <code class="inl">final</code>/<code class="inl">static</code>.<br/>
+  <b>Advanced:</b> How HashMap works internally (buckets, hashing, collisions, treeify); Java memory model / GC basics; generics; concurrency (<code class="inl">synchronized</code>, <code class="inl">ExecutorService</code>).<br/>
+  <b>C++:</b> pointers vs references; RAII; stack vs heap; <code class="inl">vector</code> internals; move semantics (basic). Keep to what you know from DSA.</div>
+
+  <h3>5.7 REST APIs, Auth (JWT) &amp; Security <span class="stars">★★★★★</span></h3>
+  <div class="card"><b>Basic:</b> What is REST? HTTP methods &amp; status codes? Idempotency? What is a JWT and what's inside it?<br/>
+  <b>Intermediate:</b> How does JWT verification work (you verify against Supabase)? Access vs refresh tokens? What is CSRF and how did you guard it? What is CORS? Rate limiting — why per-endpoint?<br/>
+  <b>Advanced:</b> Where do you store tokens (cookie vs localStorage) and the XSS/CSRF trade-off? OWASP Top 10 — name five and your mitigations? Prompt injection as a new attack surface? Secrets management?<br/>
+  <b>Scenario:</b> "Design auth + authorization for a multi-role app." (Your six-role model + <code class="inl">requireRole</code> is a ready-made answer.)</div>
+
+  <h3>5.8 Git/GitHub, Docker, Postman, n8n <span class="stars">★★★☆☆</span></h3>
+  <div class="card"><b>Git:</b> merge vs rebase; resolving conflicts; what is a PR; <code class="inl">.gitignore</code> (and why you should NOT commit <code class="inl">build/</code> — see your Legal-Ai-App).<br/>
+  <b>Docker:</b> image vs container; what is a Dockerfile; what does docker-compose do (cite TradeLab-AI); why containerise?<br/>
+  <b>n8n:</b> trigger vs action nodes; webhook vs schedule; when NOT to use it.<br/>
+  <b>Postman:</b> how you test/collection-run your APIs.</div>
+
+  <h3>5.9 Computer Vision &amp; YOLO / Raspberry Pi <span class="stars">★★★☆☆</span></h3>
+  <div class="card"><b>Basic:</b> classification vs detection vs segmentation; what YOLO does; bounding boxes/confidence.<br/>
+  <b>Intermediate:</b> IoU &amp; NMS; precision/recall/mAP; why YOLO is single-shot/fast; edge-inference constraints.<br/>
+  <b>Advanced:</b> model quantisation/pruning; fps optimisation on Pi; dataset/annotation; handling class imbalance and false positives in a safety context.</div>
+
+  <div class="callout c-bad"><b>Skills to fix before interviewing:</b> add <b>Kotlin, Android/Jetpack Compose, Room, Hilt, MVVM, Prisma, Redis</b> (all code-proven, currently missing). Qualify or make-true <b>RAG</b> and <b>Agentic AI</b>. Decide whether to keep <b>C++</b> given limited evidence.</div>
+</div>
+
+
+<!-- ===================== SECTION 6: CROSS QUESTIONS ===================== -->
+<div class="section">
+  <div class="sec-head"><div class="num">Section 6</div><h2>Cross Questions — The Skeptical Interviewer</h2></div>
+  <p class="lead">Real interviews are chains, not single questions. Below are full "drill-until-exhausted" ladders on your riskiest claims. Practice saying each rung out loud. The goal: never be surprised by the next "why?".</p>
+
+  <h3>6.1 Chain: "You claim RAG pipelines."</h3>
+  <div class="card">
+    <b>Q:</b> You list RAG on your resume — walk me through your pipeline. →
+    <b>You:</b> (Honest) "My current apps use structured LLM prompting; I haven't shipped a full RAG system yet — here's exactly how I'd build one for NyayaSim." →
+    <b>Q:</b> So it's not actually implemented? →
+    <b>You:</b> "Correct, and I should tighten the resume wording. But I understand it deeply: chunk the statutes and case law, embed them, store in pgvector on my existing Supabase Postgres, retrieve top-k by cosine similarity, inject with citations." →
+    <b>Q:</b> Why pgvector, not Pinecone? →
+    <b>You:</b> "Reuse existing infra, transactional consistency, fine to a few million vectors; I'd move to a dedicated vector DB only past that scale." →
+    <b>Q:</b> How do you chunk legal text well? →
+    <b>You:</b> "By logical unit — section/sub-section — with metadata (act, section, year), plus overlap so cross-references survive." →
+    <b>Q:</b> How do you stop hallucinated citations? →
+    <b>You:</b> "Instruct the model to answer only from retrieved context, return the cited section IDs, and verify those IDs exist in my corpus before showing them."
+  </div>
+  <div class="callout c-good"><b>Why this wins:</b> you converted an unsupported claim into a demonstration of design depth <i>and</i> intellectual honesty. That combination scores higher than a shaky "yes I built it."</div>
+
+  <h3>6.2 Chain: "Why MongoDB and not PostgreSQL?" (DealHunt)</h3>
+  <div class="card">
+    <b>Q:</b> Why Mongo? → <b>You:</b> "Document-shaped, evolving deal data; fast to iterate." →
+    <b>Q:</b> What if you need a transaction across users, deals and payments? → <b>You:</b> "Mongo supports multi-doc transactions now, but relational integrity is easier in Postgres; if the domain became transaction-heavy I'd move." →
+    <b>Q:</b> How do you join a user's deals with their votes efficiently in Mongo? → <b>You:</b> "Embed where read-together, reference where large/independent; use <code class="inl">$lookup</code> sparingly and index the foreign fields." →
+    <b>Q:</b> So when is Mongo the wrong choice? → <b>You:</b> "Heavy cross-entity joins, strict schemas, complex analytics — that's Postgres territory, which I used in Bookstore and TradeLab-AI."
+  </div>
+
+  <h3>6.3 Chain: "10,000 users log in and use the courtroom simultaneously."</h3>
+  <div class="card">
+    <b>Q:</b> What breaks first? → <b>You:</b> "The JSON-file datastore — it rewrites the whole file per write and serialises writes; it'll become the bottleneck and can't run across multiple instances." →
+    <b>Q:</b> Fix it. → <b>You:</b> "Move to Postgres/Prisma (done in TradeLab-AI). Now the API is stateless and scales horizontally behind a load balancer." →
+    <b>Q:</b> Now what's the next bottleneck? → <b>You:</b> "LLM latency and rate limits — every turn is a synchronous provider call. I'd add a queue, stream responses (already done for the tutor via SSE), cache generated cases in Redis, and route across my three providers for headroom." →
+    <b>Q:</b> Cost at that scale? → <b>You:</b> "Model per-trial token cost, cache aggressively, use the cheapest adequate model (Claude Haiku today), and cap per-user usage." →
+    <b>Q:</b> How do you know it works before launch? → <b>You:</b> "Load test with k6/Artillery against a staging deploy, watch p95 latency and error rate, and set SLOs."
+  </div>
+
+  <h3>6.4 Chain: "Is NyayaSim's AI really 'agentic'?"</h3>
+  <div class="card">
+    <b>Q:</b> Define agentic. → <b>You:</b> "In my build it means multiple LLM personas — judge, counsel, witnesses — each with its own system prompt and short memory, coordinated by the backend. It's role orchestration." →
+    <b>Q:</b> That's not autonomous agents though. → <b>You:</b> "Agreed — there's no plan→act→observe tool-use loop yet. Calling it 'multi-persona orchestration' is more accurate; true autonomous agents are my next step." →
+    <b>Q:</b> How would you make it truly agentic? → <b>You:</b> "Give each persona tools (retrieve statute, look up precedent), a planning loop, and a terminator/guardrail so it can't loop forever, with an orchestrator arbitrating turns."
+  </div>
+
+  <h3>6.5 Chain: "Prove this is your code."</h3>
+  <div class="card">
+    <b>Q:</b> Explain a specific design decision and why. → <b>You:</b> Pick the provider-fallback <code class="inl">ask()</code> or the security middleware ordering — explain the <i>why</i>, not just the what. →
+    <b>Q:</b> Why is <code class="inl">requireAuth</code> after <code class="inl">rateLimit</code> but before the routes? → <b>You:</b> "Rate-limit first to cheaply reject floods before doing work; validate JSON and CSRF; then authenticate; then audit — each layer assumes the previous passed." →
+    <b>Q:</b> What would you refactor? → <b>You:</b> "Split <code class="inl">claudeService.js</code> into provider adapters + a router, add a schema validator (Zod) instead of ad-hoc checks, and replace the JSON DB." (Naming real refactors proves ownership.)
+  </div>
+
+  <h3>6.6 Rapid skeptical volley (practice one-breath answers)</h3>
+  <div class="card"><ul>
+    <li>"Why should I believe your latency numbers?" → "Here's how I measured them and the tool I used."</li>
+    <li>"What if the LLM is down?" → "Provider fallback + offline/guest mode + graceful error normalization."</li>
+    <li>"Why not just use one model?" → "Vendor risk, cost/latency flexibility, A/B quality."</li>
+    <li>"Where's your test suite?" → (Honest) "Manual + Postman today; unit tests for services and prompt-contract tests are my next priority." (Don't fake it.)</li>
+    <li>"Isn't a JSON file a toy?" → "For a demo/offline mode it's deliberate and adequate; for production it's the first thing I'd replace, and I have in TradeLab-AI."</li>
+    <li>"How do you know your AI's legal answers are correct?" → "I don't fully today — that's why RAG + citation verification + disclaimers matter, and why an eval harness is on the roadmap."</li>
+    <li>"What's the one thing you're least confident about here?" → Answer sincerely; self-awareness scores.</li>
+  </ul></div>
+
+  <div class="callout c-info"><b>Meta-technique:</b> when you genuinely don't know, say "I don't know, but here's how I'd find out" and reason aloud. Interviewers cross-question to find your <i>edge of knowledge</i> and watch how you behave there — calm honesty beats bluffing every single time.</div>
+</div>
+
+
+<!-- ===================== SECTION 7: RESUME WEAKNESSES ===================== -->
+<div class="section">
+  <div class="sec-head"><div class="num">Section 7</div><h2>Resume Weaknesses &amp; Stronger Rewrites</h2></div>
+  <p class="lead">Every weakness worth fixing, ranked by how much it can hurt you, each with a concrete, evidence-backed rewrite. Only changes supported by your actual code/achievements are suggested.</p>
+
+  <h3>7.1 Priority Fix List</h3>
+  <table>
+    <tr><th>#</th><th>Weakness</th><th>Risk</th><th>Fix</th></tr>
+    <tr><td>1</td><td>"RAG pipelines" unsupported by any repo</td><td class="s-lo">High</td><td>Build one real RAG feature OR reword to "LLM prompt-orchestration pipelines."</td></tr>
+    <tr><td>2</td><td>"PostgreSQL" implies NyayaSim backend uses it (it's a JSON file)</td><td class="s-lo">High</td><td>Attribute Postgres to Bookstore/TradeLab-AI; describe NyayaSim store accurately.</td></tr>
+    <tr><td>3</td><td>Kotlin/Android/Room/Hilt/MVVM missing despite full Android app</td><td class="s-mid">Medium (missed upside)</td><td>Add them to skills; mention the Android client in NyayaSim's bullet.</td></tr>
+    <tr><td>4</td><td>No metrics anywhere (users, latency, accuracy, time saved)</td><td class="s-mid">Medium</td><td>Add 1 honest number per project/internship.</td></tr>
+    <tr><td>5</td><td>3 of 4 projects not publicly verifiable; repo naming mismatch</td><td class="s-mid">Medium</td><td>Publish/clean repos; add GitHub links; rename Legal-Ai-App→NyayaSim.</td></tr>
+    <tr><td>6</td><td>"Agentic AI" overclaims vs multi-persona prompting</td><td class="s-mid">Medium</td><td>Reword to "multi-agent role simulation / LLM orchestration."</td></tr>
+    <tr><td>7</td><td>Docker listed but not in the flagship project</td><td class="s-lo">Low</td><td>Fine — back it with TradeLab-AI; be ready to cite it.</td></tr>
+    <tr><td>8</td><td>Internship 2 months, no owned outcome/metric</td><td class="s-lo">Low</td><td>Add a quantified bullet; clarify ownership.</td></tr>
+    <tr><td>9</td><td>GitHub: no READMEs, committed build artifacts</td><td class="s-lo">Low</td><td>Add READMEs + screenshots + live links; add .gitignore.</td></tr>
+    <tr><td>10</td><td>C++ listed with thin evidence</td><td class="s-lo">Low</td><td>Keep only if DSA-ready; otherwise drop.</td></tr>
+  </table>
+
+  <h3>7.2 Bullet Rewrites (before → after)</h3>
+
+  <h4>Professional Summary</h4>
+  <div class="card">
+    <span class="s-lo"><b>Before:</b></span> "…Skilled in LLM applications, RAG pipelines, and agentic AI workflows with the OpenAI and Gemini APIs…"<br/><br/>
+    <span class="s-hi"><b>After (accurate + stronger):</b></span> "…Skilled in LLM applications and prompt-orchestration pipelines with a provider-agnostic layer over OpenAI, Gemini and Anthropic APIs, plus production-style React/Node platforms with secure auth, layered API security, and a native Kotlin/Android client." <span class="small">(Every word here is code-backed.)</span>
+  </div>
+
+  <h4>NyayaSim</h4>
+  <div class="card">
+    <span class="s-lo"><b>Before:</b></span> "…secure authentication… Designed scalable REST APIs following Clean Architecture and SOLID… React, Node, Express, Supabase, PostgreSQL, OpenAI, Gemini."<br/><br/>
+    <span class="s-hi"><b>After:</b></span> "Built an AI courtroom (React + Node/Express + Kotlin Android) where LLM personas play judge, counsel and witnesses in English/Hindi, citing Indian statutes. Engineered a provider-agnostic LLM layer (OpenAI/Gemini/Anthropic) with automatic fallback and JSON-schema output parsing. Shipped production-style security: Supabase JWT verification, role-based access (6 roles), CSP/HSTS, CSRF guard, layered rate limiting, upload validation and audit logging. Deployed on Render."<br/>
+    <span class="small">Stack line → React, Node.js, Express, Supabase (Auth), OpenAI/Gemini/Anthropic APIs, Kotlin, Jetpack Compose, Room; deployed on Render.</span>
+  </div>
+
+  <h4>Smart Glasses</h4>
+  <div class="card">
+    <span class="s-lo"><b>Before:</b></span> "…real-time YOLO object-detection pipeline… optimized for low-latency inference…"<br/><br/>
+    <span class="s-hi"><b>After (add the numbers you actually hit):</b></span> "Built a real-time YOLO[vN] detection pipeline on Raspberry Pi achieving ~[X] FPS, converting detections to spoken navigation cues via text-to-speech with ~[Y]ms capture-to-audio latency for hands-free assistive navigation." <span class="small">(Fill X/Y with your real measurements.)</span>
+  </div>
+
+  <h4>Internship</h4>
+  <div class="card">
+    <span class="s-lo"><b>Before:</b></span> "…eliminate repetitive manual tasks through API integrations."<br/><br/>
+    <span class="s-hi"><b>After:</b></span> "Built [N] n8n workflows integrating OpenAI/Gemini and a Telegram bot that automated [specific task], cutting a ~[X]-hour manual process to [Y] minutes."
+  </div>
+
+  <h3>7.3 Buzzwords Without Evidence — verdict</h3>
+  <table>
+    <tr><th>Buzzword</th><th>Backed?</th><th>Action</th></tr>
+    <tr><td>Generative AI</td><td class="s-hi">Yes</td><td>Keep — strongest, most-proven claim.</td></tr>
+    <tr><td>RAG</td><td class="s-lo">No</td><td>Build or reword. Do not leave as-is.</td></tr>
+    <tr><td>Agentic AI</td><td class="s-mid">Partial</td><td>Reframe as multi-persona orchestration.</td></tr>
+    <tr><td>Workflow Automation</td><td class="s-hi">Yes</td><td>Keep — internship + Telegram evidence.</td></tr>
+    <tr><td>Clean Architecture / SOLID</td><td class="s-mid">Partial (strong on Android)</td><td>Keep; cite the Android layering as proof.</td></tr>
+    <tr><td>Scalable REST APIs</td><td class="s-mid">Partial</td><td>Keep but be ready to concede the JSON-DB limit.</td></tr>
+  </table>
+
+  <h3>7.4 What's Missing Entirely (add these)</h3>
+  <ul>
+    <li><b>Metrics</b> — even one honest number per item transforms credibility.</li>
+    <li><b>Testing</b> — no test strategy mentioned; add "Postman collections; unit tests for services" once true.</li>
+    <li><b>Deployment detail</b> — mention Render (NyayaSim) and Docker-Compose (TradeLab-AI).</li>
+    <li><b>Mobile skills</b> — Kotlin/Android are entirely absent yet fully built.</li>
+    <li><b>GitHub links per project</b> — and fix the NyayaSim↔Legal-Ai-App naming gap.</li>
+    <li><b>GATE score/rank</b> — a number beats "qualified."</li>
+  </ul>
+  <div class="callout c-good"><b>Net effect of these fixes:</b> the resume moves from "impressive but slightly over-claimed" (7.4) to "impressive and bullet-proof under code review" (≈9). None of these changes require inventing anything — they either add real evidence or align words with the code you already wrote.</div>
+</div>
+
+
+<!-- ===================== SECTION 8: BEHAVIORAL ===================== -->
+<div class="section">
+  <div class="sec-head"><div class="num">Section 8</div><h2>Behavioral Interview</h2></div>
+  <p class="lead">STAR = Situation, Task, Action, Result. Answers below are drawn from your real projects and achievements. Personalise the specifics (names, numbers) so they're true and vivid. Aim for 90 seconds each.</p>
+
+  <div class="qa">
+    <div class="q">B1. Tell me about a challenging technical problem you solved. <span class="stars">★★★★★</span></div>
+    <div class="a"><b>S:</b> In NyayaSim, LLM responses that were supposed to be JSON kept arriving wrapped in markdown or prose, crashing my parser and breaking the courtroom flow. <b>T:</b> I needed reliable structured output across three different LLM providers. <b>A:</b> I wrote strict JSON-only system prompts with schema-shaped examples, lowered temperature, capped tokens, and built a <code class="inl">safeJSON()</code> helper that strips code fences and regex-extracts the JSON object as a fallback. <b>R:</b> Parse failures went from routine to rare, and the same code worked across OpenAI, Gemini and Anthropic. <b>Reflection:</b> I later learned provider JSON-mode/function-calling would be even more robust — my next iteration.</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">B2. Describe a time you failed or made a wrong decision. <span class="stars">★★★★★</span></div>
+    <div class="a"><b>S:</b> To ship NyayaSim fast I stored all app data in a single JSON file. <b>T:</b> It had to persist performances, posts and audit logs reliably. <b>A:</b> It worked for demos, but I realised it couldn't handle concurrent writes or run across multiple instances — a real scalability dead-end. <b>R:</b> I documented the limitation, kept it for offline/guest mode, and in my next project (TradeLab-AI) I started with Postgres + Prisma from day one. <b>Lesson:</b> match persistence to the reliability requirement early, not after.</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">B3. Tell me about working under a tight deadline. <span class="stars">★★★★☆</span></div>
+    <div class="a"><b>S:</b> Hackfinity 2025, team of two, ~24–36 hours to build an AI mental-wellness app. <b>T:</b> Ship something demoable, not everything. <b>A:</b> We ruthlessly scoped to one core loop, split work (I took [your part]), and integrated early to avoid last-minute merge chaos. <b>R:</b> We delivered a working demo on time. <b>Lesson:</b> scope-cutting is a skill; a small thing that works beats a big thing that doesn't.</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">B4. A time you had to learn a new technology quickly. <span class="stars">★★★★★</span></div>
+    <div class="a"><b>S:</b> For NyayaSim's mobile client I'd not built native Android before. <b>T:</b> Ship a real Kotlin app mirroring the web features. <b>A:</b> I learned Jetpack Compose, Hilt DI, and Room, and applied clean architecture (data/domain/feature layers) so the codebase stayed maintainable. <b>R:</b> A working native app with offline-seeded cases. <b>Lesson:</b> good architecture makes an unfamiliar stack learnable because the structure guides you.</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">B5. A time you disagreed with someone / handled conflict. <span class="stars">★★★☆☆</span></div>
+    <div class="a"><b>Use a real example.</b> Structure: the disagreement (e.g., tech choice or scope), how you argued with data not ego, how you found common ground or ran a quick experiment to decide, and the outcome. If you lack a strong team example, use a trade-off decision you debated with yourself and justify how you'd handle it on a team.</div>
+    <div class="mistake">✗ Painting the other person as an idiot. Show respect + reasoning.</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">B6. A time you took ownership beyond what was asked. <span class="stars">★★★★☆</span></div>
+    <div class="a"><b>Ideal:</b> The security middleware in NyayaSim — no one required CSP/CSRF/rate-limiting/audit logging for a student project, but you built production-style hardening because you wanted it to be real. That's ownership.</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">B7. A time you had to prioritise among many tasks. <span class="stars">★★★☆☆</span></div>
+    <div class="a"><b>Ideal:</b> Building NyayaSim solo across web + backend + mobile forced constant prioritisation. Explain your rule: ship the core courtroom loop first (highest user value), then auth/security, then Academy/extras. Value and dependency order over novelty.</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">B8. Tell me about difficult debugging. <span class="stars">★★★★☆</span></div>
+    <div class="a"><b>Ideal:</b> Use the requestId-tracing story (Section 3, Q14): a failing AI call traced via audit-log requestId to a provider timeout, fixed with error normalization and a clearer user message.</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">B9. A time you received tough feedback. <span class="stars">★★★☆☆</span></div>
+    <div class="a"><b>Ideal:</b> This handbook is a great real example — "a review of my resume against my code showed I'd over-claimed RAG and mislabeled my database. I took it as a chance to align my words with reality and plan the RAG feature properly." Growth mindset in action.</div>
+  </div>
+
+  <div class="qa">
+    <div class="q">B10. Why do you build side projects at all? / What motivates you? <span class="stars">★★★☆☆</span></div>
+    <div class="a"><b>Ideal:</b> Genuine curiosity + wanting to solve real problems (courtroom practice for students, navigation for the visually impaired). Tie motivation to impact, not just résumé-building.</div>
+  </div>
+
+  <div class="callout c-info"><b>Behavioral tips:</b> keep a mental "story bank" of 5–6 real incidents; most behavioral questions map onto them. Always end with a <b>result</b> and a <b>lesson</b>. Use "I" for your actions, "we" for context. Never badmouth anyone.</div>
+</div>
+
+<!-- ===================== SECTION 9: HR ===================== -->
+<div class="section">
+  <div class="sec-head"><div class="num">Section 9</div><h2>HR Interview</h2></div>
+  <p class="lead">Non-technical but decisive — HR screens for fit, motivation, and red flags. Answers tailored to you; adjust specifics before interviewing.</p>
+
+  <div class="qa"><div class="q">H1. Tell me about yourself (HR version). <span class="stars">★★★★★</span></div>
+  <div class="a"><b>Ideal:</b> Shorter, more human than the technical version: "Final-year ECE student at CCET who fell in love with building software, especially AI products. I've built an AI courtroom simulator end-to-end, interned in AI automation, and I keep my fundamentals sharp — I qualified GATE CS and solved 170+ DSA problems. I'm looking for a role where I can grow as an engineer and ship products people actually use."</div></div>
+
+  <div class="qa"><div class="q">H2. Why should we hire you? <span class="stars">★★★★★</span></div>
+  <div class="a"><b>Ideal:</b> "Three reasons: I build complete products, not just features — NyayaSim spans web, backend, AI and mobile. I have strong fundamentals (GATE CS, DSA rank). And I learn fast and take ownership — I taught myself native Android and shipped production-style security no one asked for. I'll add value quickly and keep growing."</div>
+  <div class="mistake">✗ Generic "I'm hardworking and passionate." Give evidence.</div></div>
+
+  <div class="qa"><div class="q">H3. Why our company / this role? <span class="stars">★★★★★</span></div>
+  <div class="a"><b>Ideal:</b> Research first, then connect: name a specific product/team/value of theirs and link it to your work (e.g., "your AI platform team" ↔ "my LLM/full-stack work on NyayaSim"). Show you chose them, not just any offer.</div>
+  <div class="mistake">✗ "Because you're a great company / good pay / brand name."</div></div>
+
+  <div class="qa"><div class="q">H4. Your strengths? <span class="stars">★★★★☆</span></div>
+  <div class="a"><b>Ideal:</b> End-to-end product building; fast self-directed learning; fundamentals + delivery balance. Back each with one line of proof.</div></div>
+
+  <div class="qa"><div class="q">H5. Your weaknesses? <span class="stars">★★★★★</span></div>
+  <div class="a"><b>Ideal (real + improving):</b> "I've sometimes optimised for shipping speed over long-term robustness — like using a quick JSON datastore that wouldn't scale. I've been correcting it by designing the data layer properly upfront, as I did in TradeLab-AI with Postgres/Prisma. Another: I tend to over-claim excitedly — I'm learning to describe things precisely, which is why I'm tightening my resume wording." </div>
+  <div class="mistake">✗ Fake weakness ("I'm a perfectionist"). Interviewers see through it.</div></div>
+
+  <div class="qa"><div class="q">H6. Where do you see yourself in 3–5 years? <span class="stars">★★★☆☆</span></div>
+  <div class="a"><b>Ideal:</b> Growing from strong individual contributor toward technical depth in AI/backend systems, ideally owning meaningful product areas. Ambitious but grounded; tie to the company's growth paths.</div></div>
+
+  <div class="qa"><div class="q">H7. Salary expectations? <span class="stars">★★★★☆</span></div>
+  <div class="a"><b>Ideal (fresher):</b> "I'm early-career and my priority is learning and impact, so I'm flexible and open to your standard band for this role. If you can share the range, I'm confident we can align." Deflect politely; don't lowball or overshoot blindly. Research market bands beforehand.</div></div>
+
+  <div class="qa"><div class="q">H8. Are you considering higher studies? <span class="stars">★★★☆☆</span></div>
+  <div class="a"><b>Careful (you qualified GATE — they may probe M.Tech intent):</b> "I qualified GATE to strengthen my CS fundamentals, and it did. My focus now is industry experience and building real products; I'm committed to this role." (Reassure them you won't leave for a master's in 6 months, if that's true.)</div>
+  <div class="mistake">✗ Saying "yes, I'll leave for M.Tech next year" unless it's genuinely your plan.</div></div>
+
+  <div class="qa"><div class="q">H9. Relocation / remote / work hours? <span class="stars">★★★☆☆</span></div>
+  <div class="a"><b>Ideal:</b> Be honest and accommodating within your real constraints. "I'm open to relocating to [city]" / "I'm comfortable with your hybrid model." Flexibility helps freshers; don't over-commit to something you can't do.</div></div>
+
+  <div class="qa"><div class="q">H10. Notice period / availability? <span class="stars">★★☆☆☆</span></div>
+  <div class="a"><b>Ideal:</b> As a student, state your graduation timeline (2027 expected) and earliest full-time availability, plus willingness to intern before then if relevant.</div></div>
+
+  <div class="qa"><div class="q">H11. Biggest achievement &amp; biggest regret? <span class="stars">★★★☆☆</span></div>
+  <div class="a"><b>Achievement:</b> GATE CS from an ECE background, or shipping NyayaSim solo across four surfaces. <b>Regret (light):</b> Not publishing/polishing your GitHub repos earlier — now fixing it. Keep regret professional and recoverable.</div></div>
+
+  <div class="qa"><div class="q">H12. Do you have questions for us? <span class="stars">★★★★★</span></div>
+  <div class="a"><b>Always yes.</b> Ask 2–3 thoughtful ones: "What does success look like in the first 6 months?", "How does the team use AI/LLMs today?", "What's the biggest technical challenge the team faces?" Never "no questions" — it signals disinterest.</div></div>
+</div>
+
+
+<!-- ===================== SECTION 10: CODING ===================== -->
+<div class="section">
+  <div class="sec-head"><div class="num">Section 10</div><h2>Coding Interview</h2></div>
+  <p class="lead">Predicted from your profile: you have 170+ DSA problems and GATE CS, so expect solid medium-level DSA plus SQL (you have real schemas) and JS/Node practical rounds. Categorised with difficulty, approach, complexity, and traps.</p>
+
+  <div class="callout c-info"><b>Your DSA base language is Java</b> (per your DSA repo). Use it unless the interviewer wants JS. Mirror ~50 problems onto LeetCode so you can quote a recognisable count.</div>
+
+  <h3>10.1 Arrays &amp; Strings <span class="stars">★★★★★</span></h3>
+  <table>
+    <tr><th>Problem</th><th>Diff</th><th>Approach</th><th>Time / Space</th></tr>
+    <tr><td>Two Sum</td><td>Easy</td><td>HashMap of complement</td><td>O(n) / O(n)</td></tr>
+    <tr><td>Best Time to Buy/Sell Stock</td><td>Easy</td><td>Track min + max profit</td><td>O(n) / O(1)</td></tr>
+    <tr><td>Longest Substring w/o Repeating</td><td>Med</td><td>Sliding window + set/map</td><td>O(n) / O(k)</td></tr>
+    <tr><td>Group Anagrams</td><td>Med</td><td>Sorted key or char-count key</td><td>O(nk log k) / O(nk)</td></tr>
+    <tr><td>Product of Array Except Self</td><td>Med</td><td>Prefix + suffix products</td><td>O(n) / O(1)</td></tr>
+    <tr><td>Maximum Subarray (Kadane)</td><td>Med</td><td>Running max</td><td>O(n) / O(1)</td></tr>
+    <tr><td>Merge Intervals</td><td>Med</td><td>Sort by start, merge overlaps</td><td>O(n log n) / O(n)</td></tr>
+  </table>
+  <p class="small"><b>Common mistakes:</b> off-by-one in sliding windows; forgetting to update the window's left pointer; integer overflow in products (use long).</p>
+
+  <h3>10.2 HashMaps &amp; Two Pointers <span class="stars">★★★★★</span></h3>
+  <table>
+    <tr><th>Problem</th><th>Diff</th><th>Key idea</th><th>Time</th></tr>
+    <tr><td>Valid Anagram</td><td>Easy</td><td>Count array of 26</td><td>O(n)</td></tr>
+    <tr><td>Top K Frequent Elements</td><td>Med</td><td>Count + heap/bucket sort</td><td>O(n log k)</td></tr>
+    <tr><td>Container With Most Water</td><td>Med</td><td>Two pointers inward</td><td>O(n)</td></tr>
+    <tr><td>3Sum</td><td>Med</td><td>Sort + two-pointer, skip dups</td><td>O(n²)</td></tr>
+    <tr><td>Longest Consecutive Sequence</td><td>Med</td><td>Set, start-of-run check</td><td>O(n)</td></tr>
+  </table>
+
+  <h3>10.3 Linked Lists, Stacks, Queues <span class="stars">★★★★☆</span></h3>
+  <table>
+    <tr><th>Problem</th><th>Diff</th><th>Key idea</th></tr>
+    <tr><td>Reverse Linked List</td><td>Easy</td><td>Iterative 3-pointer / recursion</td></tr>
+    <tr><td>Detect Cycle</td><td>Easy</td><td>Floyd's fast/slow</td></tr>
+    <tr><td>Merge Two Sorted Lists</td><td>Easy</td><td>Dummy head + splice</td></tr>
+    <tr><td>Valid Parentheses</td><td>Easy</td><td>Stack of open brackets</td></tr>
+    <tr><td>LRU Cache</td><td>Med</td><td>HashMap + doubly linked list</td></tr>
+    <tr><td>Min Stack</td><td>Easy</td><td>Auxiliary min stack</td></tr>
+  </table>
+  <p class="small"><b>LRU Cache is high-probability for you</b> — you literally reason about caching in your scaling answers. Be able to code it cold (get/put O(1)).</p>
+
+  <h3>10.4 Trees &amp; Graphs <span class="stars">★★★★☆</span></h3>
+  <table>
+    <tr><th>Problem</th><th>Diff</th><th>Approach</th></tr>
+    <tr><td>BFS/DFS traversals, level order</td><td>Easy/Med</td><td>Queue (BFS) / recursion or stack (DFS)</td></tr>
+    <tr><td>Max Depth / Diameter of Tree</td><td>Easy/Med</td><td>Post-order recursion</td></tr>
+    <tr><td>Validate BST</td><td>Med</td><td>In-order or min/max bounds</td></tr>
+    <tr><td>Lowest Common Ancestor</td><td>Med</td><td>Recursive split search</td></tr>
+    <tr><td>Number of Islands</td><td>Med</td><td>Grid DFS/BFS flood fill</td></tr>
+    <tr><td>Course Schedule (cycle detect)</td><td>Med</td><td>Topological sort / DFS colors</td></tr>
+    <tr><td>Clone Graph</td><td>Med</td><td>DFS/BFS + visited map</td></tr>
+  </table>
+
+  <h3>10.5 Dynamic Programming <span class="stars">★★★★☆</span></h3>
+  <table>
+    <tr><th>Problem</th><th>Diff</th><th>Recurrence idea</th></tr>
+    <tr><td>Climbing Stairs / Fibonacci</td><td>Easy</td><td>dp[i]=dp[i-1]+dp[i-2]</td></tr>
+    <tr><td>House Robber</td><td>Med</td><td>dp[i]=max(dp[i-1], dp[i-2]+a[i])</td></tr>
+    <tr><td>Coin Change</td><td>Med</td><td>Min coins over amounts</td></tr>
+    <tr><td>Longest Common Subsequence</td><td>Med</td><td>2D grid on two strings</td></tr>
+    <tr><td>0/1 Knapsack</td><td>Med</td><td>Weight-capacity table</td></tr>
+    <tr><td>Word Break</td><td>Med</td><td>dp over prefixes + dict set</td></tr>
+  </table>
+  <p class="small"><b>Traps:</b> jumping to code before writing the recurrence + base cases; not stating the state definition aloud; missing memoisation → exponential blow-up.</p>
+
+  <h3>10.6 SQL <span class="stars">★★★★★</span></h3>
+  <p>You have real schemas (Bookstore, TradeLab-AI) — expect SQL. Practice against your own Bookstore tables (Books/Customers/Orders):</p>
+  <div class="card"><ol>
+    <li>Top 5 customers by total order amount (JOIN + GROUP BY + ORDER BY + LIMIT).</li>
+    <li>Books never ordered (LEFT JOIN … WHERE Order_ID IS NULL, or NOT IN/NOT EXISTS).</li>
+    <li>2nd highest book price (subquery / <code class="inl">DENSE_RANK()</code>).</li>
+    <li>Monthly revenue (GROUP BY date_trunc).</li>
+    <li>Running total of revenue (window function <code class="inl">SUM() OVER(ORDER BY …)</code>).</li>
+    <li>Genre with highest average price (GROUP BY + HAVING/ORDER).</li>
+    <li>Find duplicate customer emails.</li>
+  </ol></div>
+  <p class="small"><b>Know cold:</b> INNER vs LEFT JOIN, GROUP BY vs WHERE vs HAVING, subqueries vs CTEs, window functions, indexes and when they help.</p>
+
+  <h3>10.7 OOP &amp; Language <span class="stars">★★★★☆</span></h3>
+  <div class="card">Design a parking lot / library / elevator (OOP modelling with classes, inheritance, interfaces). Explain SOLID with an example from your code. Java specifics: HashMap internals, equals/hashCode contract, immutability, exceptions. JS specifics: closures, prototypes, event loop, <code class="inl">this</code> binding.</div>
+
+  <h3>10.8 Backend / API &amp; Practical <span class="stars">★★★★★</span></h3>
+  <p>Given your profile, expect a practical build/extend round more than pure algorithms:</p>
+  <div class="card"><ol>
+    <li>Implement a rate limiter (fixed window / sliding window / token bucket) — you already use one, so explain the algorithm too.</li>
+    <li>Design REST endpoints for a resource (proper verbs, status codes, pagination, validation).</li>
+    <li>Implement retry-with-exponential-backoff for a flaky API call (your LLM calls).</li>
+    <li>Write middleware that authenticates a JWT and attaches the user (you've done this).</li>
+    <li>Debounce/throttle in JS; implement <code class="inl">Promise.all</code>; async queue with concurrency limit.</li>
+    <li>Design a URL shortener / paste bin (classic system-design-lite).</li>
+  </ol></div>
+
+  <h3>10.9 Interview Tips (coding round)</h3>
+  <ul>
+    <li>Clarify inputs/outputs/constraints <b>before</b> coding. Ask about edge cases (empty, nulls, duplicates, huge N).</li>
+    <li>State your approach and its complexity <b>before</b> writing — get buy-in.</li>
+    <li>Think out loud; a silent screen is the #1 way to fail even with the right answer.</li>
+    <li>Start with brute force, then optimise — don't freeze chasing the optimal first.</li>
+    <li>Test your code on a small example and an edge case at the end.</li>
+    <li>Know time/space complexity of everything you write.</li>
+  </ul>
+</div>
+
+<!-- ===================== SECTION 11: COMPANY-SPECIFIC ===================== -->
+<div class="section">
+  <div class="sec-head"><div class="num">Section 11</div><h2>Company-Specific Preparation</h2></div>
+  <p class="lead">Where each company focuses, and the resume-based questions they're most likely to ask <i>you</i>. Prioritise by where you're actually applying.</p>
+
+  <table>
+    <tr><th>Company</th><th>Interview focus</th><th>Likely question for YOU</th></tr>
+    <tr><td><b>Google</b></td><td>DSA depth, algorithmic rigour, "Googleyness", data structures</td><td>Hard graph/DP problem; "design the RAG retrieval at scale"; clean complexity analysis. Your GATE CS + DSA rank is the door here.</td></tr>
+    <tr><td><b>Amazon</b></td><td>Leadership Principles (behavioral is ~50%!) + DSA</td><td>Expect 4–6 LP questions — Ownership, Dive Deep, Bias for Action, Deliver Results. Map your NyayaSim/hackathon/JSON-DB stories to LPs (Section 8). "Tell me about a time you dived deep to debug."</td></tr>
+    <tr><td><b>Microsoft</b></td><td>Balanced DSA + design + collaboration, practical coding</td><td>Trees/strings; "design a courtroom-like real-time system"; how you work in a team. Friendly, thorough.</td></tr>
+    <tr><td><b>Adobe</b></td><td>DSA + CS fundamentals (OS/DBMS/OOP) + project depth</td><td>Strong on fundamentals — your GATE prep shines. Deep project grill on NyayaSim architecture + a medium DSA.</td></tr>
+    <tr><td><b>Atlassian</b></td><td>Practical full-stack, values-based behavioral, real-world coding</td><td>Extend a small app/API live; "design an API for X"; teamwork values. Your full-stack + REST experience fits well.</td></tr>
+    <tr><td><b>Oracle / Salesforce</b></td><td>DBMS/SQL depth, backend, OOP</td><td>SQL joins/normalisation (use Bookstore), transactions, Java OOP. Cite your Postgres/Prisma work.</td></tr>
+    <tr><td><b>NVIDIA / Qualcomm</b></td><td>Systems, C++, embedded, CV/ML close to hardware</td><td>Smart Glasses is your hook — edge inference, YOLO optimisation, C/C++, latency. Be ready with real FPS numbers.</td></tr>
+    <tr><td><b>Samsung</b></td><td>C/C++, DSA, embedded + some ML</td><td>Embedded + Smart Glasses + DSA. Coding in C/C++.</td></tr>
+    <tr><td><b>Walmart / Flipkart / Meesho</b></td><td>DSA (strong) + scalable system design</td><td>Medium-hard DSA + "design a deal/e-commerce feed" — DealHunt is directly relevant. Scale + caching questions.</td></tr>
+    <tr><td><b>PhonePe / Razorpay / CRED</b></td><td>DSA + backend depth + reliability/consistency, high bar</td><td>Concurrency, idempotency, transactions, rate limiting (you built one!), security. Fintech loves your security layer.</td></tr>
+    <tr><td><b>Zoho / Freshworks</b></td><td>Fundamentals, practical coding, product thinking, DBMS</td><td>Multiple coding + aptitude rounds; solid fundamentals and clear projects. Less brand-name DSA grind, more breadth.</td></tr>
+    <tr><td><b>Swiggy / Zomato</b></td><td>DSA + real-time systems, high scale</td><td>"Design real-time order/feed"; caching, queues; medium-hard DSA. Map to your scaling answers.</td></tr>
+    <tr><td><b>Startups</b></td><td>Ship-fast full-stack, ownership, breadth, AI product sense</td><td>Your sweet spot — end-to-end building, AI integration, learning speed. Expect "build this feature by tomorrow" energy and a take-home.</td></tr>
+  </table>
+
+  <h3>11.1 How to re-weight your prep by target</h3>
+  <ul>
+    <li><b>Product giants (Google/Amazon/Microsoft/Adobe):</b> DSA is the gate — grind LeetCode mediums, lean on GATE fundamentals, and prep Amazon LPs hard.</li>
+    <li><b>Fintech (PhonePe/Razorpay/CRED):</b> emphasise your security middleware, rate limiting, auth, and reliability thinking — you have real evidence most freshers lack.</li>
+    <li><b>Hardware/systems (NVIDIA/Qualcomm/Samsung):</b> make Smart Glasses bullet-proof with real numbers, brush up C++ and CV fundamentals.</li>
+    <li><b>Startups &amp; AI-first companies:</b> lead with NyayaSim end-to-end, the provider-agnostic LLM layer, and shipping speed. This is where your profile is strongest right now.</li>
+  </ul>
+  <div class="callout c-warn"><b>Universal:</b> every company that opens your GitHub will see the JSON-DB, the Legal-Ai-App naming, and the missing RAG. Fix or pre-empt those (Sections 2 &amp; 7) before applying anywhere.</div>
+</div>
+
+
+<!-- ===================== SECTION 12: FINAL REVISION ===================== -->
+<div class="section">
+  <div class="sec-head"><div class="num">Section 12</div><h2>Final Revision Guide</h2></div>
+  <p class="lead">Concise, high-yield lists for last-mile revision. Stars mark probability given <i>your</i> resume. If you only have an hour, revise the ★★★★★ items.</p>
+
+  <h3>12.1 Top 30 Highest-Probability Resume Questions</h3>
+  <div class="card"><ol>
+    <li>Tell me about yourself. <span class="stars">★★★★★</span></li>
+    <li>Walk me through NyayaSim end-to-end. <span class="stars">★★★★★</span></li>
+    <li>Why did you support three LLM providers? Which is deployed? <span class="stars">★★★★★</span></li>
+    <li>Your resume says OpenAI/Gemini but you deploy Claude — explain. <span class="stars">★★★★★</span></li>
+    <li>Explain your RAG pipeline. <span class="stars">★★★★★</span></li>
+    <li>Where's your PostgreSQL code? <span class="stars">★★★★★</span></li>
+    <li>How do you get structured JSON out of an LLM reliably? <span class="stars">★★★★★</span></li>
+    <li>How does your authentication work? <span class="stars">★★★★★</span></li>
+    <li>Biggest scalability bottleneck in NyayaSim? <span class="stars">★★★★★</span></li>
+    <li>Is your AI really "agentic"? Define it. <span class="stars">★★★★★</span></li>
+    <li>Why Node/Express over Python? <span class="stars">★★★★☆</span></li>
+    <li>Security risks of sending user text to an LLM? <span class="stars">★★★★★</span></li>
+    <li>10,000 concurrent users — what breaks? <span class="stars">★★★★★</span></li>
+    <li>Solo or team on NyayaSim — what did YOU build? <span class="stars">★★★★★</span></li>
+    <li>Why an ECE student in a software role? <span class="stars">★★★★★</span></li>
+    <li>What's your GATE CS score/rank? <span class="stars">★★★★☆</span></li>
+    <li>Biggest technical challenge you solved? <span class="stars">★★★★★</span></li>
+    <li>Tell me about a failure. <span class="stars">★★★★★</span></li>
+    <li>Why MongoDB for DealHunt? <span class="stars">★★★★☆</span></li>
+    <li>How exactly are DealHunt's recommendations "AI-powered"? <span class="stars">★★★★☆</span></li>
+    <li>Smart Glasses: which YOLO, what FPS? <span class="stars">★★★★☆</span></li>
+    <li>How is the internship Telegram bot different from your Telegram project? <span class="stars">★★★★☆</span></li>
+    <li>What is prompt engineering — give a real technique. <span class="stars">★★★★★</span></li>
+    <li>Why is your repo "Legal-Ai-App" but resume says "NyayaSim"? <span class="stars">★★★★☆</span></li>
+    <li>Where's your test suite? <span class="stars">★★★★☆</span></li>
+    <li>What would you refactor in NyayaSim? <span class="stars">★★★★☆</span></li>
+    <li>How did you deploy it? <span class="stars">★★★☆☆</span></li>
+    <li>Explain your security middleware chain. <span class="stars">★★★★☆</span></li>
+    <li>What metric proves your project is good? <span class="stars">★★★☆☆</span></li>
+    <li>Do you have questions for us? <span class="stars">★★★★★</span></li>
+  </ol></div>
+
+  <h3>12.2 Top 20 Project Questions</h3>
+  <div class="card"><ol>
+    <li>Narrate one courtroom turn's full request lifecycle. <span class="stars">★★★★★</span></li>
+    <li>How does provider fallback work + its weaknesses? <span class="stars">★★★★★</span></li>
+    <li>How do you verify the Supabase token server-side? <span class="stars">★★★★☆</span></li>
+    <li>Your six roles and how authorization is enforced. <span class="stars">★★★★☆</span></li>
+    <li>SSE streaming for the tutor — why SSE over WebSockets? <span class="stars">★★★★☆</span></li>
+    <li>Migrate the JSON store to Postgres with zero downtime. <span class="stars">★★★★★</span></li>
+    <li>Defend against prompt injection in witness/lawyer prompts. <span class="stars">★★★★★</span></li>
+    <li>Cache generated cases — what's the key, how avoid staleness? <span class="stars">★★★★☆</span></li>
+    <li>Retry + circuit breaker for provider failover. <span class="stars">★★★★☆</span></li>
+    <li>Eval harness for legal-answer quality. <span class="stars">★★★★☆</span></li>
+    <li>The Android clean-architecture layering. <span class="stars">★★★★☆</span></li>
+    <li>Why Room + offline seeding on mobile? <span class="stars">★★★☆☆</span></li>
+    <li>Cost model per trial + three levers to cut it 10x. <span class="stars">★★★★☆</span></li>
+    <li>Design the full RAG pipeline (pgvector). <span class="stars">★★★★★</span></li>
+    <li>How do you stop hallucinated case citations? <span class="stars">★★★★★</span></li>
+    <li>Rate-limiting fairness per-user behind a proxy. <span class="stars">★★★★☆</span></li>
+    <li>Where could XSS enter and how to close it? <span class="stars">★★★★☆</span></li>
+    <li>Smart Glasses: box→speech + latency budget. <span class="stars">★★★★☆</span></li>
+    <li>DealHunt data model + indexes. <span class="stars">★★★★☆</span></li>
+    <li>TradeLab-AI: Redis usage + docker-compose services. <span class="stars">★★★★☆</span></li>
+  </ol></div>
+
+  <h3>12.3 Top 20 Technical / Fundamentals Questions</h3>
+  <div class="card"><ol>
+    <li>Explain the Node.js event loop. <span class="stars">★★★★★</span></li>
+    <li>Node single-threaded — handling concurrency. <span class="stars">★★★★★</span></li>
+    <li>SQL vs NoSQL — when each. <span class="stars">★★★★★</span></li>
+    <li>INNER vs LEFT JOIN; GROUP BY vs HAVING. <span class="stars">★★★★★</span></li>
+    <li>What is a JWT; access vs refresh tokens. <span class="stars">★★★★★</span></li>
+    <li>CORS vs CSRF vs XSS — differences + defenses. <span class="stars">★★★★★</span></li>
+    <li>REST principles + idempotency + status codes. <span class="stars">★★★★☆</span></li>
+    <li>React re-render triggers; useMemo/useCallback. <span class="stars">★★★★☆</span></li>
+    <li>useEffect dependency-array pitfalls. <span class="stars">★★★★☆</span></li>
+    <li>HashMap internals (buckets/collisions/treeify). <span class="stars">★★★★☆</span></li>
+    <li>ACID + transaction isolation levels. <span class="stars">★★★★☆</span></li>
+    <li>Indexing — benefit and cost. <span class="stars">★★★★☆</span></li>
+    <li>Process vs thread; Python GIL. <span class="stars">★★★☆☆</span></li>
+    <li>OOP four pillars + a SOLID example from your code. <span class="stars">★★★★☆</span></li>
+    <li>What is a token / temperature / context window. <span class="stars">★★★★★</span></li>
+    <li>RAG components end-to-end. <span class="stars">★★★★★</span></li>
+    <li>Caching strategies + eviction (LRU/TTL). <span class="stars">★★★★☆</span></li>
+    <li>Docker image vs container; compose. <span class="stars">★★★☆☆</span></li>
+    <li>Git merge vs rebase; .gitignore hygiene. <span class="stars">★★★☆☆</span></li>
+    <li>YOLO: IoU, NMS, mAP. <span class="stars">★★★☆☆</span></li>
+  </ol></div>
+
+  <h3>12.4 Top HR &amp; Behavioral (quick list)</h3>
+  <table>
+    <tr><th>HR (Section 9)</th><th>Behavioral (Section 8)</th></tr>
+    <tr><td>Tell me about yourself ★★★★★</td><td>Biggest technical challenge ★★★★★</td></tr>
+    <tr><td>Why should we hire you? ★★★★★</td><td>A time you failed ★★★★★</td></tr>
+    <tr><td>Why our company/role? ★★★★★</td><td>Learned a tech fast (Android) ★★★★★</td></tr>
+    <tr><td>Strengths / Weaknesses ★★★★★</td><td>Tight deadline (Hackfinity) ★★★★☆</td></tr>
+    <tr><td>Higher studies intent? ★★★★☆</td><td>Took ownership (security layer) ★★★★☆</td></tr>
+    <tr><td>Salary expectations ★★★★☆</td><td>Difficult debugging (requestId) ★★★★☆</td></tr>
+    <tr><td>3–5 year goals ★★★☆☆</td><td>Conflict / disagreement ★★★☆☆</td></tr>
+    <tr><td>Questions for us ★★★★★</td><td>Prioritising many tasks ★★★☆☆</td></tr>
+  </table>
+
+  <h3>12.5 Top System-Design &amp; Debugging Prompts</h3>
+  <div class="card"><b>System design:</b> Scale NyayaSim to 1M users ★★★★★ · Design a RAG service ★★★★★ · Design a URL shortener ★★★☆☆ · Design a deal/news feed (DealHunt/Telegram) ★★★★☆ · Design a rate limiter ★★★★☆ · Design real-time multiplayer courtroom ★★★☆☆ · Multi-region LLM failover + cost routing ★★★★☆.
+  <br/><br/><b>Debugging:</b> Trace a failing AI call by requestId ★★★★★ · Diagnose a 3x cost spike ★★★★☆ · Find a React re-render/perf bug ★★★★☆ · Reproduce an intermittent JSON-parse failure ★★★★☆ · Debug a provider timeout/rate-limit ★★★★☆ · Memory leak in a long-running Node process ★★★☆☆.</div>
+</div>
+
+<!-- ===================== NIGHT-BEFORE CHEAT SHEET ===================== -->
+<div class="section">
+  <div class="sec-head"><div class="num">Appendix</div><h2>🌙 Night-Before Interview Cheat Sheet</h2></div>
+  <p class="lead">One-page-per-topic revision. Read this last thing tonight and first thing tomorrow. Breathe. You've built real things — this just helps you talk about them clearly.</p>
+
+  <h3>A. Your 30-Second Self-Pitch (say it out loud 3×)</h3>
+  <div class="callout c-good">"I'm Rahul, a final-year ECE student at CCET working in Generative AI and full-stack. My flagship is NyayaSim — an AI courtroom with a React front end, a Node backend, a provider-agnostic LLM layer over OpenAI/Gemini/Claude, and a native Kotlin Android app. I interned in AI automation, qualified GATE CS, and solved 170+ DSA problems. I build AI products end to end."</div>
+
+  <h3>B. NyayaSim in One Breath (your anchor project)</h3>
+  <div class="card"><b>Stack:</b> React+Vite · Node/Express (ESM) · Supabase auth · JSON datastore · OpenAI/Gemini/Anthropic · Kotlin/Compose Android · Render.
+  <br/><b>Flow:</b> client → securityHeaders → rateLimit → validateJson → csrfGuard → requireAuth → auditLog → route → service → <code class="inl">ask()</code> LLM → <code class="inl">safeJSON</code> → response.
+  <br/><b>Deployed model:</b> <code class="inl">claude-haiku-4-5</code>. <b>Roles:</b> student/lawyer/judge/admin/college/recruiter.
+  <br/><b>AI fns:</b> generateCase, judgeRespond, lawyerRespond, witnessAnswer, objection, analyzePerformance, deliverJudgment, getPrecedents, tutor(SSE).</div>
+
+  <h3>C. The Three Honesty Scripts (rehearse verbatim)</h3>
+  <div class="callout c-warn">
+    <b>RAG:</b> "I use structured LLM prompting today; full RAG (pgvector over the legal corpus, retrieve-then-cite) is my next step — here's the design." <br/>
+    <b>PostgreSQL:</b> "NyayaSim uses Supabase (Postgres) for auth; app data is a JSON store for demos/offline. Real Postgres is in my Bookstore and TradeLab-AI (Prisma) projects." <br/>
+    <b>Agentic:</b> "Multi-persona LLM orchestration with per-role prompts and memory — not autonomous tool-using agents yet; that's the roadmap."
+  </div>
+
+  <h3>D. Key Definitions (10-second answers)</h3>
+  <table>
+    <tr><td><b>RAG</b></td><td>Retrieve relevant docs (embed → vector search) then feed to the LLM to answer with grounded citations.</td></tr>
+    <tr><td><b>JWT</b></td><td>Signed token (header.payload.signature) proving identity; verified server-side, no session storage needed.</td></tr>
+    <tr><td><b>REST</b></td><td>Stateless HTTP API using nouns + verbs (GET/POST/PUT/DELETE) and status codes.</td></tr>
+    <tr><td><b>Event loop</b></td><td>Node's single-threaded scheduler that handles many I/O ops concurrently via callbacks/promises.</td></tr>
+    <tr><td><b>CSRF</b></td><td>Forcing a logged-in user's browser to make unwanted requests; defended by tokens (double-submit).</td></tr>
+    <tr><td><b>ACID</b></td><td>Atomicity, Consistency, Isolation, Durability — DB transaction guarantees.</td></tr>
+    <tr><td><b>Idempotency</b></td><td>Same request repeated = same result (safe retries).</td></tr>
+    <tr><td><b>NMS (YOLO)</b></td><td>Non-max suppression: keep the best overlapping box, drop the rest by IoU.</td></tr>
+    <tr><td><b>Temperature</b></td><td>LLM randomness knob; low = deterministic, high = creative.</td></tr>
+    <tr><td><b>Index</b></td><td>DB structure that speeds reads at the cost of slower writes + storage.</td></tr>
+  </table>
+
+  <h3>E. Complexity Cheat Table</h3>
+  <table>
+    <tr><th>Structure/Op</th><th>Access</th><th>Search</th><th>Insert</th><th>Delete</th></tr>
+    <tr><td>Array</td><td>O(1)</td><td>O(n)</td><td>O(n)</td><td>O(n)</td></tr>
+    <tr><td>HashMap</td><td>—</td><td>O(1) avg</td><td>O(1) avg</td><td>O(1) avg</td></tr>
+    <tr><td>Balanced BST</td><td>O(log n)</td><td>O(log n)</td><td>O(log n)</td><td>O(log n)</td></tr>
+    <tr><td>Heap</td><td>—</td><td>O(n)</td><td>O(log n)</td><td>O(log n) (min/max)</td></tr>
+    <tr><td>Sorting (merge/heap)</td><td colspan="4">O(n log n) time</td></tr>
+    <tr><td>BFS/DFS graph</td><td colspan="4">O(V + E)</td></tr>
+  </table>
+
+  <h3>F. Architecture Sketch to Redraw on the Whiteboard</h3>
+  <pre>[React SPA] [Kotlin Android]
+       \        /
+        \      /  HTTPS + JWT
+      [ Express API ]
+   headers→limit→json→csrf→auth→audit
+        |            |
+   [ ask() LLM ]  [ datastore ]
+   OpenAI/Gemini   JSON now → Postgres next
+     /Anthropic    (+ Redis cache, queue @ scale)
+        |
+   [ (future) RAG: embed → pgvector → retrieve → cite ]</pre>
+
+  <h3>G. Common Pitfalls — Don't Do These Tomorrow</h3>
+  <ul>
+    <li>Don't claim RAG/Postgres/Agentic without the honesty scripts — you'll get caught.</li>
+    <li>Don't say "we built" then fail "which part was yours?" — know your exact contribution.</li>
+    <li>Don't code silently — narrate. Don't skip clarifying questions.</li>
+    <li>Don't badmouth anyone in behavioral answers.</li>
+    <li>Don't say "no questions for you."</li>
+    <li>Don't fake a test suite or metrics — say "manual/Postman today, here's my plan."</li>
+    <li>Don't forget: your deployed model is Claude Haiku, your repo is Legal-Ai-App.</li>
+  </ul>
+
+  <h3>H. Bring / Have Ready</h3>
+  <ul>
+    <li>GATE scorecard, GeeksforGeeks profile (170+, rank 16), GitHub open to Legal-Ai-App + TradeLab-AI.</li>
+    <li>A 2-line answer for each of the four projects + which are on GitHub.</li>
+    <li>Your "story bank" of 5–6 STAR incidents.</li>
+    <li>2–3 questions to ask them, researched about the specific team.</li>
+    <li>Water, charged laptop, quiet space, and the self-pitch rehearsed.</li>
+  </ul>
+
+  <h3>I. The Top 30 Highest-Probability Questions (from 12.1) — final skim</h3>
+  <p class="small">Re-read Section 12.1 now. If you can answer #1–#15 crisply and deliver the three honesty scripts (C) without flinching, you are ready. Then sleep — a rested brain out-interviews a crammed one.</p>
+
+  <div class="callout c-good"><b>Final word.</b> Your resume is genuinely strong and most of it is backed by real, well-engineered code — that already puts you ahead. The only thing standing between you and a great interview is being the person who explains the gaps first. Do that, stay honest, reason out loud, and let the work speak. Good luck, Rahul. 🚀</div>
+</div>
+
+</body>
+</html>
